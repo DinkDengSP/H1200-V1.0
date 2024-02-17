@@ -1,0 +1,555 @@
+ -- Copyright (C) 2023  Intel Corporation. All rights reserved.
+ -- Your use of Intel Corporation's design tools, logic functions 
+ -- and other software and tools, and any partner logic 
+ -- functions, and any output files from any of the foregoing 
+ -- (including device programming or simulation files), and any 
+ -- associated documentation or information are expressly subject 
+ -- to the terms and conditions of the Intel Program License 
+ -- Subscription Agreement, the Intel Quartus Prime License Agreement,
+ -- the Intel FPGA IP License Agreement, or other applicable license
+ -- agreement, including, without limitation, that your use is for
+ -- the sole purpose of programming logic devices manufactured by
+ -- Intel and sold by Intel or its authorized distributors.  Please
+ -- refer to the applicable agreement for further details, at
+ -- https://fpgasoftware.intel.com/eula.
+ -- 
+ -- This is a Quartus Prime output file. It is for reporting purposes only, and is
+ -- not intended for use as a Quartus Prime input file. This file cannot be used
+ -- to make Quartus Prime pin assignments - for instructions on how to make pin
+ -- assignments, please see Quartus Prime help.
+ ---------------------------------------------------------------------------------
+
+
+
+ ---------------------------------------------------------------------------------
+ -- NC            : No Connect. This pin has no internal connection to the device.
+ -- DNU           : Do Not Use. This pin MUST NOT be connected.
+ -- VCCINT        : Dedicated power pin, which MUST be connected to VCC  (1.2V).
+ -- VCCIO         : Dedicated power pin, which MUST be connected to VCC
+ --                 of its bank.
+ --                  Bank 1:       3.3V
+ --                  Bank 2:       3.3V
+ --                  Bank 3:       3.3V
+ --                  Bank 4:       3.3V
+ --                  Bank 5:       3.3V
+ --                  Bank 6:       3.3V
+ --                  Bank 7:       3.3V
+ --                  Bank 8:       3.3V
+ -- GND           : Dedicated ground pin. Dedicated GND pins MUST be connected to GND.
+ --                  It can also be used to report unused dedicated pins. The connection
+ --                  on the board for unused dedicated pins depends on whether this will
+ --                  be used in a future design. One example is device migration. When
+ --                  using device migration, refer to the device pin-tables. If it is a
+ --                  GND pin in the pin table or if it will not be used in a future design
+ --                  for another purpose the it MUST be connected to GND. If it is an unused
+ --                  dedicated pin, then it can be connected to a valid signal on the board
+ --                  (low, high, or toggling) if that signal is required for a different
+ --                  revision of the design.
+ -- GND+          : Unused input pin. It can also be used to report unused dual-purpose pins.
+ --                  This pin should be connected to GND. It may also be connected  to a
+ --                  valid signal  on the board  (low, high, or toggling)  if that signal
+ --                  is required for a different revision of the design.
+ -- GND*          : Unused  I/O  pin. Connect each pin marked GND* directly to GND
+ --                  or leave it unconnected.
+ -- RESERVED      : Unused I/O pin, which MUST be left unconnected.
+ -- RESERVED_INPUT    : Pin is tri-stated and should be connected to the board.
+ -- RESERVED_INPUT_WITH_WEAK_PULLUP    : Pin is tri-stated with internal weak pull-up resistor.
+ -- RESERVED_INPUT_WITH_BUS_HOLD       : Pin is tri-stated with bus-hold circuitry.
+ -- RESERVED_OUTPUT_DRIVEN_HIGH        : Pin is output driven high.
+ ---------------------------------------------------------------------------------
+
+
+
+ ---------------------------------------------------------------------------------
+ -- Pin directions (input, output or bidir) are based on device operating in user mode.
+ ---------------------------------------------------------------------------------
+
+Quartus Prime Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
+CHIP  "H1200_StepMotorControl_GHRD"  ASSIGNED TO AN: 10CL080YU484I7G
+
+Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
+-------------------------------------------------------------------------------------------------------------
+GND                          : A1        : gnd    :                   :         :           :                
+VCCIO8                       : A2        : power  :                   : 3.3V    : 8         :                
+motor_sensor_in_emergency_stop[14] : A3        : input  : 3.3-V LVTTL       :         : 8         : Y              
+motor_sensor_in_emergency_stop[16] : A4        : input  : 3.3-V LVTTL       :         : 8         : Y              
+motor_sensor_in_util_stop[1] : A5        : input  : 3.3-V LVTTL       :         : 8         : Y              
+motor_sensor_in_util_stop[4] : A6        : input  : 3.3-V LVTTL       :         : 8         : Y              
+motor_sensor_in_util_stop[5] : A7        : input  : 3.3-V LVTTL       :         : 8         : Y              
+RESERVED_INPUT               : A8        :        :                   :         : 8         :                
+motor_sensor_in_util_stop[6] : A9        : input  : 3.3-V LVTTL       :         : 8         : Y              
+RESERVED_INPUT               : A10       :        :                   :         : 8         :                
+GND+                         : A11       :        :                   :         : 8         :                
+GND+                         : A12       :        :                   :         : 7         :                
+RESERVED_INPUT               : A13       :        :                   :         : 7         :                
+RESERVED_INPUT               : A14       :        :                   :         : 7         :                
+RESERVED_INPUT               : A15       :        :                   :         : 7         :                
+RESERVED_INPUT               : A16       :        :                   :         : 7         :                
+RESERVED_INPUT               : A17       :        :                   :         : 7         :                
+RESERVED_INPUT               : A18       :        :                   :         : 7         :                
+RESERVED_INPUT               : A19       :        :                   :         : 7         :                
+RESERVED_INPUT               : A20       :        :                   :         : 7         :                
+VCCIO7                       : A21       : power  :                   : 3.3V    : 7         :                
+GND                          : A22       : gnd    :                   :         :           :                
+GND                          : AA1       : gnd    :                   :         :           :                
+GND                          : AA2       : gnd    :                   :         :           :                
+motor_sensor_in_emergency_stop[6] : AA3       : input  : 3.3-V LVTTL       :         : 3         : Y              
+RESERVED_INPUT               : AA4       :        :                   :         : 3         :                
+motor_encoder_b[12]          : AA5       : input  : 3.3-V LVTTL       :         : 3         : Y              
+motor_encoder_a[12]          : AA6       : input  : 3.3-V LVTTL       :         : 3         : Y              
+motor_encoder_a[8]           : AA7       : input  : 3.3-V LVTTL       :         : 3         : Y              
+motor_encoder_a[7]           : AA8       : input  : 3.3-V LVTTL       :         : 3         : Y              
+motor_encoder_a[6]           : AA9       : input  : 3.3-V LVTTL       :         : 3         : Y              
+motor_encoder_a[5]           : AA10      : input  : 3.3-V LVTTL       :         : 3         : Y              
+GND+                         : AA11      :        :                   :         : 3         :                
+GND+                         : AA12      :        :                   :         : 4         :                
+motor_encoder_a[4]           : AA13      : input  : 3.3-V LVTTL       :         : 4         : Y              
+motor_encoder_a[3]           : AA14      : input  : 3.3-V LVTTL       :         : 4         : Y              
+motor_encoder_a[2]           : AA15      : input  : 3.3-V LVTTL       :         : 4         : Y              
+motor_encoder_a[1]           : AA16      : input  : 3.3-V LVTTL       :         : 4         : Y              
+GND                          : AA17      : gnd    :                   :         :           :                
+motor_sensor_in_reset[15]    : AA18      : input  : 3.3-V LVTTL       :         : 4         : Y              
+fsmc_comm_data[14]           : AA19      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+fsmc_comm_data[12]           : AA20      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+fsmc_comm_data[9]            : AA21      : bidir  : 3.3-V LVTTL       :         : 5         : Y              
+fsmc_comm_data[10]           : AA22      : bidir  : 3.3-V LVTTL       :         : 5         : Y              
+GND                          : AB1       : gnd    :                   :         :           :                
+VCCIO3                       : AB2       : power  :                   : 3.3V    : 3         :                
+RESERVED_INPUT               : AB3       :        :                   :         : 3         :                
+motor_sensor_in_emergency_stop[9] : AB4       : input  : 3.3-V LVTTL       :         : 3         : Y              
+motor_sensor_in_emergency_stop[11] : AB5       : input  : 3.3-V LVTTL       :         : 3         : Y              
+motor_sensor_in_emergency_stop[10] : AB6       : input  : 3.3-V LVTTL       :         : 3         : Y              
+motor_encoder_b[8]           : AB7       : input  : 3.3-V LVTTL       :         : 3         : Y              
+motor_encoder_b[7]           : AB8       : input  : 3.3-V LVTTL       :         : 3         : Y              
+motor_encoder_b[6]           : AB9       : input  : 3.3-V LVTTL       :         : 3         : Y              
+motor_encoder_b[5]           : AB10      : input  : 3.3-V LVTTL       :         : 3         : Y              
+GND+                         : AB11      :        :                   :         : 3         :                
+GND+                         : AB12      :        :                   :         : 4         :                
+motor_encoder_b[4]           : AB13      : input  : 3.3-V LVTTL       :         : 4         : Y              
+motor_encoder_b[3]           : AB14      : input  : 3.3-V LVTTL       :         : 4         : Y              
+motor_encoder_b[2]           : AB15      : input  : 3.3-V LVTTL       :         : 4         : Y              
+motor_encoder_b[1]           : AB16      : input  : 3.3-V LVTTL       :         : 4         : Y              
+GND                          : AB17      : gnd    :                   :         :           :                
+fsmc_comm_data[15]           : AB18      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+fsmc_comm_data[13]           : AB19      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+fsmc_comm_data[11]           : AB20      : bidir  : 3.3-V LVTTL       :         : 4         : Y              
+VCCIO4                       : AB21      : power  :                   : 3.3V    : 4         :                
+GND                          : AB22      : gnd    :                   :         :           :                
+motor_out_enable[16]         : B1        : output : 3.3-V LVTTL       :         : 1         : Y              
+motor_out_pluse[16]          : B2        : output : 3.3-V LVTTL       :         : 1         : Y              
+motor_sensor_in_emergency_stop[13] : B3        : input  : 3.3-V LVTTL       :         : 8         : Y              
+motor_sensor_in_emergency_stop[15] : B4        : input  : 3.3-V LVTTL       :         : 8         : Y              
+motor_sensor_in_util_stop[7] : B5        : input  : 3.3-V LVTTL       :         : 8         : Y              
+motor_sensor_in_util_stop[2] : B6        : input  : 3.3-V LVTTL       :         : 8         : Y              
+motor_sensor_in_util_stop[3] : B7        : input  : 3.3-V LVTTL       :         : 8         : Y              
+RESERVED_INPUT               : B8        :        :                   :         : 8         :                
+RESERVED_INPUT               : B9        :        :                   :         : 8         :                
+RESERVED_INPUT               : B10       :        :                   :         : 8         :                
+GND+                         : B11       :        :                   :         : 8         :                
+GND+                         : B12       :        :                   :         : 7         :                
+RESERVED_INPUT               : B13       :        :                   :         : 7         :                
+RESERVED_INPUT               : B14       :        :                   :         : 7         :                
+RESERVED_INPUT               : B15       :        :                   :         : 7         :                
+RESERVED_INPUT               : B16       :        :                   :         : 7         :                
+RESERVED_INPUT               : B17       :        :                   :         : 7         :                
+RESERVED_INPUT               : B18       :        :                   :         : 7         :                
+RESERVED_INPUT               : B19       :        :                   :         : 7         :                
+RESERVED_INPUT               : B20       :        :                   :         : 7         :                
+RESERVED_INPUT               : B21       :        :                   :         : 6         :                
+RESERVED_INPUT               : B22       :        :                   :         : 6         :                
+GND                          : C1        : gnd    :                   :         :           :                
+GND                          : C2        : gnd    :                   :         :           :                
+motor_encoder_a[13]          : C3        : input  : 3.3-V LVTTL       :         : 8         : Y              
+motor_encoder_b[13]          : C4        : input  : 3.3-V LVTTL       :         : 8         : Y              
+GND                          : C5        : gnd    :                   :         :           :                
+motor_encoder_a[14]          : C6        : input  : 3.3-V LVTTL       :         : 8         : Y              
+motor_encoder_b[16]          : C7        : input  : 3.3-V LVTTL       :         : 8         : Y              
+motor_encoder_a[16]          : C8        : input  : 3.3-V LVTTL       :         : 8         : Y              
+GND                          : C9        : gnd    :                   :         :           :                
+RESERVED_INPUT               : C10       :        :                   :         : 8         :                
+GND                          : C11       : gnd    :                   :         :           :                
+GND                          : C12       : gnd    :                   :         :           :                
+led_breath_1                 : C13       : output : 3.3-V LVTTL       :         : 7         : Y              
+GND                          : C14       : gnd    :                   :         :           :                
+RESERVED_INPUT               : C15       :        :                   :         : 7         :                
+GND                          : C16       : gnd    :                   :         :           :                
+RESERVED_INPUT               : C17       :        :                   :         : 7         :                
+RESERVED_INPUT               : C18       :        :                   :         : 7         :                
+RESERVED_INPUT               : C19       :        :                   :         : 7         :                
+RESERVED_INPUT               : C20       :        :                   :         : 6         :                
+RESERVED_INPUT               : C21       :        :                   :         : 6         :                
+RESERVED_INPUT               : C22       :        :                   :         : 6         :                
+~ALTERA_ASDO_DATA1~ / RESERVED_INPUT_WITH_WEAK_PULLUP : D1        : input  : 3.3-V LVTTL       :         : 1         : N              
+motor_out_dir[16]            : D2        : output : 3.3-V LVTTL       :         : 1         : Y              
+GND                          : D3        : gnd    :                   :         :           :                
+VCCIO1                       : D4        : power  :                   : 3.3V    : 1         :                
+VCCIO8                       : D5        : power  :                   : 3.3V    : 8         :                
+RESERVED_INPUT               : D6        :        :                   :         : 8         :                
+motor_encoder_b[14]          : D7        : input  : 3.3-V LVTTL       :         : 8         : Y              
+motor_encoder_a[15]          : D8        : input  : 3.3-V LVTTL       :         : 8         : Y              
+VCCIO8                       : D9        : power  :                   : 3.3V    : 8         :                
+RESERVED_INPUT               : D10       :        :                   :         : 8         :                
+VCCIO8                       : D11       : power  :                   : 3.3V    : 8         :                
+VCCIO7                       : D12       : power  :                   : 3.3V    : 7         :                
+RESERVED_INPUT               : D13       :        :                   :         : 7         :                
+VCCIO7                       : D14       : power  :                   : 3.3V    : 7         :                
+RESERVED_INPUT               : D15       :        :                   :         : 7         :                
+VCCIO7                       : D16       : power  :                   : 3.3V    : 7         :                
+RESERVED_INPUT               : D17       :        :                   :         : 7         :                
+RESERVED_INPUT               : D18       :        :                   :         : 7         :                
+RESERVED_INPUT               : D19       :        :                   :         : 7         :                
+RESERVED_INPUT               : D20       :        :                   :         : 6         :                
+RESERVED_INPUT               : D21       :        :                   :         : 6         :                
+RESERVED_INPUT               : D22       :        :                   :         : 6         :                
+motor_out_pluse[14]          : E1        : output : 3.3-V LVTTL       :         : 1         : Y              
+~ALTERA_FLASH_nCE_nCSO~ / RESERVED_INPUT_WITH_WEAK_PULLUP : E2        : input  : 3.3-V LVTTL       :         : 1         : N              
+motor_out_pluse[15]          : E3        : output : 3.3-V LVTTL       :         : 1         : Y              
+motor_out_dir[15]            : E4        : output : 3.3-V LVTTL       :         : 1         : Y              
+RESERVED_INPUT               : E5        :        :                   :         : 8         :                
+motor_sensor_in_util_stop[8] : E6        : input  : 3.3-V LVTTL       :         : 8         : Y              
+RESERVED_INPUT               : E7        :        :                   :         : 8         :                
+motor_encoder_b[15]          : E8        : input  : 3.3-V LVTTL       :         : 8         : Y              
+RESERVED_INPUT               : E9        :        :                   :         : 8         :                
+GND                          : E10       : gnd    :                   :         :           :                
+RESERVED_INPUT               : E11       :        :                   :         : 7         :                
+RESERVED_INPUT               : E12       :        :                   :         : 7         :                
+motor_sensor_in_util_stop[16] : E13       : input  : 3.3-V LVTTL       :         : 7         : Y              
+RESERVED_INPUT               : E14       :        :                   :         : 7         :                
+RESERVED_INPUT               : E15       :        :                   :         : 7         :                
+RESERVED_INPUT               : E16       :        :                   :         : 7         :                
+VCCD_PLL2                    : E17       : power  :                   : 1.2V    :           :                
+GNDA2                        : E18       : gnd    :                   :         :           :                
+VCCIO6                       : E19       : power  :                   : 3.3V    : 6         :                
+GND                          : E20       : gnd    :                   :         :           :                
+RESERVED_INPUT               : E21       :        :                   :         : 6         :                
+RESERVED_INPUT               : E22       :        :                   :         : 6         :                
+motor_out_enable[14]         : F1        : output : 3.3-V LVTTL       :         : 1         : Y              
+motor_out_dir[14]            : F2        : output : 3.3-V LVTTL       :         : 1         : Y              
+GND                          : F3        : gnd    :                   :         :           :                
+VCCIO1                       : F4        : power  :                   : 3.3V    : 1         :                
+GNDA3                        : F5        : gnd    :                   :         :           :                
+VCCD_PLL3                    : F6        : power  :                   : 1.2V    :           :                
+motor_sensor_in_util_stop[10] : F7        : input  : 3.3-V LVTTL       :         : 8         : Y              
+motor_sensor_in_util_stop[11] : F8        : input  : 3.3-V LVTTL       :         : 8         : Y              
+motor_sensor_in_util_stop[12] : F9        : input  : 3.3-V LVTTL       :         : 8         : Y              
+motor_sensor_in_util_stop[13] : F10       : input  : 3.3-V LVTTL       :         : 8         : Y              
+motor_sensor_in_util_stop[14] : F11       : input  : 3.3-V LVTTL       :         : 7         : Y              
+GND                          : F12       : gnd    :                   :         :           :                
+motor_sensor_in_util_stop[15] : F13       : input  : 3.3-V LVTTL       :         : 7         : Y              
+RESERVED_INPUT               : F14       :        :                   :         : 7         :                
+RESERVED_INPUT               : F15       :        :                   :         : 7         :                
+GND                          : F16       : gnd    :                   :         :           :                
+RESERVED_INPUT               : F17       :        :                   :         : 6         :                
+VCCA2                        : F18       : power  :                   : 2.5V    :           :                
+RESERVED_INPUT               : F19       :        :                   :         : 6         :                
+RESERVED_INPUT               : F20       :        :                   :         : 6         :                
+RESERVED_INPUT               : F21       :        :                   :         : 6         :                
+RESERVED_INPUT               : F22       :        :                   :         : 6         :                
+sys_clk_50m                  : G1        : input  : 3.3-V LVTTL       :         : 1         : Y              
+GND+                         : G2        :        :                   :         : 1         :                
+motor_out_dir[12]            : G3        : output : 3.3-V LVTTL       :         : 1         : Y              
+motor_out_pluse[12]          : G4        : output : 3.3-V LVTTL       :         : 1         : Y              
+motor_out_enable[12]         : G5        : output : 3.3-V LVTTL       :         : 1         : Y              
+VCCA3                        : G6        : power  :                   : 2.5V    :           :                
+motor_out_enable[15]         : G7        : output : 3.3-V LVTTL       :         : 8         : Y              
+VCCINT                       : G8        : power  :                   : 1.2V    :           :                
+GND                          : G9        : gnd    :                   :         :           :                
+VCCINT                       : G10       : power  :                   : 1.2V    :           :                
+GND                          : G11       : gnd    :                   :         :           :                
+VCCINT                       : G12       : power  :                   : 1.2V    :           :                
+GND                          : G13       : gnd    :                   :         :           :                
+VCCINT                       : G14       : power  :                   : 1.2V    :           :                
+GND                          : G15       : gnd    :                   :         :           :                
+VCCINT                       : G16       : power  :                   : 1.2V    :           :                
+GND                          : G17       : gnd    :                   :         :           :                
+RESERVED_INPUT               : G18       :        :                   :         : 6         :                
+VCCIO6                       : G19       : power  :                   : 3.3V    : 6         :                
+GND                          : G20       : gnd    :                   :         :           :                
+GND+                         : G21       :        :                   :         : 6         :                
+sys_clk_24m                  : G22       : input  : 3.3-V LVTTL       :         : 6         : Y              
+motor_out_pluse[10]          : H1        : output : 3.3-V LVTTL       :         : 1         : Y              
+motor_out_dir[10]            : H2        : output : 3.3-V LVTTL       :         : 1         : Y              
+motor_out_pluse[13]          : H3        : output : 3.3-V LVTTL       :         : 1         : Y              
+motor_out_dir[13]            : H4        : output : 3.3-V LVTTL       :         : 1         : Y              
+motor_out_enable[13]         : H5        : output : 3.3-V LVTTL       :         : 1         : Y              
+motor_out_enable[10]         : H6        : output : 3.3-V LVTTL       :         : 1         : Y              
+motor_sensor_in_util_stop[9] : H7        : input  : 3.3-V LVTTL       :         : 1         : Y              
+GND                          : H8        : gnd    :                   :         :           :                
+VCCINT                       : H9        : power  :                   : 1.2V    :           :                
+GND                          : H10       : gnd    :                   :         :           :                
+VCCINT                       : H11       : power  :                   : 1.2V    :           :                
+GND                          : H12       : gnd    :                   :         :           :                
+GND                          : H13       : gnd    :                   :         :           :                
+GND                          : H14       : gnd    :                   :         :           :                
+VCCINT                       : H15       : power  :                   : 1.2V    :           :                
+GND                          : H16       : gnd    :                   :         :           :                
+RESERVED_INPUT               : H17       :        :                   :         : 6         :                
+RESERVED_INPUT               : H18       :        :                   :         : 6         :                
+RESERVED_INPUT               : H19       :        :                   :         : 6         :                
+RESERVED_INPUT               : H20       :        :                   :         : 6         :                
+RESERVED_INPUT               : H21       :        :                   :         : 6         :                
+RESERVED_INPUT               : H22       :        :                   :         : 6         :                
+motor_out_pluse[9]           : J1        : output : 3.3-V LVTTL       :         : 1         : Y              
+motor_out_dir[9]             : J2        : output : 3.3-V LVTTL       :         : 1         : Y              
+motor_out_dir[11]            : J3        : output : 3.3-V LVTTL       :         : 1         : Y              
+motor_out_pluse[11]          : J4        : output : 3.3-V LVTTL       :         : 1         : Y              
+motor_out_enable[11]         : J5        : output : 3.3-V LVTTL       :         : 1         : Y              
+motor_out_enable[9]          : J6        : output : 3.3-V LVTTL       :         : 1         : Y              
+VCCINT                       : J7        : power  :                   : 1.2V    :           :                
+VCCINT                       : J8        : power  :                   : 1.2V    :           :                
+GND                          : J9        : gnd    :                   :         :           :                
+VCCINT                       : J10       : power  :                   : 1.2V    :           :                
+VCCINT                       : J11       : power  :                   : 1.2V    :           :                
+VCCINT                       : J12       : power  :                   : 1.2V    :           :                
+VCCINT                       : J13       : power  :                   : 1.2V    :           :                
+VCCINT                       : J14       : power  :                   : 1.2V    :           :                
+GND                          : J15       : gnd    :                   :         :           :                
+VCCINT                       : J16       : power  :                   : 1.2V    :           :                
+VCCINT                       : J17       : power  :                   : 1.2V    :           :                
+RESERVED_INPUT               : J18       :        :                   :         : 6         :                
+RESERVED_INPUT               : J19       :        :                   :         : 6         :                
+RESERVED_INPUT               : J20       :        :                   :         : 6         :                
+RESERVED_INPUT               : J21       :        :                   :         : 6         :                
+RESERVED_INPUT               : J22       :        :                   :         : 6         :                
+~ALTERA_DATA0~ / RESERVED_INPUT_WITH_WEAK_PULLUP : K1        : input  : 3.3-V LVTTL       :         : 1         : N              
+~ALTERA_DCLK~                : K2        : output : 3.3-V LVTTL       :         : 1         : N              
+GND                          : K3        : gnd    :                   :         :           :                
+VCCIO1                       : K4        : power  :                   : 3.3V    : 1         :                
+nCONFIG                      : K5        :        :                   :         : 1         :                
+nSTATUS                      : K6        :        :                   :         : 1         :                
+GND                          : K7        : gnd    :                   :         :           :                
+VCCINT                       : K8        : power  :                   : 1.2V    :           :                
+VCCINT                       : K9        : power  :                   : 1.2V    :           :                
+GND                          : K10       : gnd    :                   :         :           :                
+GND                          : K11       : gnd    :                   :         :           :                
+GND                          : K12       : gnd    :                   :         :           :                
+GND                          : K13       : gnd    :                   :         :           :                
+VCCINT                       : K14       : power  :                   : 1.2V    :           :                
+VCCINT                       : K15       : power  :                   : 1.2V    :           :                
+GND                          : K16       : gnd    :                   :         :           :                
+VCCINT                       : K17       : power  :                   : 1.2V    :           :                
+RESERVED_INPUT               : K18       :        :                   :         : 6         :                
+fsmc_comm_addr[3]            : K19       : input  : 3.3-V LVTTL       :         : 6         : Y              
+MSEL3                        : K20       :        :                   :         : 6         :                
+RESERVED_INPUT               : K21       :        :                   :         : 6         :                
+~ALTERA_nCEO~ / RESERVED_OUTPUT_OPEN_DRAIN : K22       : output : 3.3-V LVTTL       :         : 6         : N              
+TMS                          : L1        : input  :                   :         : 1         :                
+TCK                          : L2        : input  :                   :         : 1         :                
+nCE                          : L3        :        :                   :         : 1         :                
+TDO                          : L4        : output :                   :         : 1         :                
+TDI                          : L5        : input  :                   :         : 1         :                
+motor_out_enable[8]          : L6        : output : 3.3-V LVTTL       :         : 2         : Y              
+VCCINT                       : L7        : power  :                   : 1.2V    :           :                
+GND                          : L8        : gnd    :                   :         :           :                
+VCCINT                       : L9        : power  :                   : 1.2V    :           :                
+GND                          : L10       : gnd    :                   :         :           :                
+GND                          : L11       : gnd    :                   :         :           :                
+GND                          : L12       : gnd    :                   :         :           :                
+GND                          : L13       : gnd    :                   :         :           :                
+VCCINT                       : L14       : power  :                   : 1.2V    :           :                
+GND                          : L15       : gnd    :                   :         :           :                
+VCCINT                       : L16       : power  :                   : 1.2V    :           :                
+MSEL2                        : L17       :        :                   :         : 6         :                
+MSEL1                        : L18       :        :                   :         : 6         :                
+VCCIO6                       : L19       : power  :                   : 3.3V    : 6         :                
+GND                          : L20       : gnd    :                   :         :           :                
+RESERVED_INPUT               : L21       :        :                   :         : 6         :                
+RESERVED_INPUT               : L22       :        :                   :         : 6         :                
+motor_out_dir[8]             : M1        : output : 3.3-V LVTTL       :         : 2         : Y              
+motor_out_pluse[8]           : M2        : output : 3.3-V LVTTL       :         : 2         : Y              
+motor_out_dir[6]             : M3        : output : 3.3-V LVTTL       :         : 2         : Y              
+motor_out_pluse[6]           : M4        : output : 3.3-V LVTTL       :         : 2         : Y              
+motor_out_enable[6]          : M5        : output : 3.3-V LVTTL       :         : 2         : Y              
+motor_out_enable[7]          : M6        : output : 3.3-V LVTTL       :         : 2         : Y              
+GND                          : M7        : gnd    :                   :         :           :                
+VCCINT                       : M8        : power  :                   : 1.2V    :           :                
+VCCINT                       : M9        : power  :                   : 1.2V    :           :                
+GND                          : M10       : gnd    :                   :         :           :                
+GND                          : M11       : gnd    :                   :         :           :                
+GND                          : M12       : gnd    :                   :         :           :                
+GND                          : M13       : gnd    :                   :         :           :                
+VCCINT                       : M14       : power  :                   : 1.2V    :           :                
+VCCINT                       : M15       : power  :                   : 1.2V    :           :                
+fsmc_comm_addr[0]            : M16       : input  : 3.3-V LVTTL       :         : 5         : Y              
+MSEL0                        : M17       :        :                   :         : 6         :                
+CONF_DONE                    : M18       :        :                   :         : 6         :                
+fsmc_comm_addr[1]            : M19       : input  : 3.3-V LVTTL       :         : 5         : Y              
+fsmc_comm_addr[2]            : M20       : input  : 3.3-V LVTTL       :         : 5         : Y              
+RESERVED_INPUT               : M21       :        :                   :         : 5         :                
+RESERVED_INPUT               : M22       :        :                   :         : 5         :                
+motor_out_dir[7]             : N1        : output : 3.3-V LVTTL       :         : 2         : Y              
+motor_out_pluse[7]           : N2        : output : 3.3-V LVTTL       :         : 2         : Y              
+GND                          : N3        : gnd    :                   :         :           :                
+VCCIO2                       : N4        : power  :                   : 3.3V    : 2         :                
+motor_out_enable[4]          : N5        : output : 3.3-V LVTTL       :         : 2         : Y              
+motor_out_enable[3]          : N6        : output : 3.3-V LVTTL       :         : 2         : Y              
+VCCINT                       : N7        : power  :                   : 1.2V    :           :                
+GND                          : N8        : gnd    :                   :         :           :                
+VCCINT                       : N9        : power  :                   : 1.2V    :           :                
+GND                          : N10       : gnd    :                   :         :           :                
+GND                          : N11       : gnd    :                   :         :           :                
+GND                          : N12       : gnd    :                   :         :           :                
+GND                          : N13       : gnd    :                   :         :           :                
+VCCINT                       : N14       : power  :                   : 1.2V    :           :                
+GND                          : N15       : gnd    :                   :         :           :                
+VCCINT                       : N16       : power  :                   : 1.2V    :           :                
+GND                          : N17       : gnd    :                   :         :           :                
+motor_sensor_in_reset[2]     : N18       : input  : 3.3-V LVTTL       :         : 5         : Y              
+fsmc_comm_addr[15]           : N19       : input  : 3.3-V LVTTL       :         : 5         : Y              
+fsmc_comm_addr[10]           : N20       : input  : 3.3-V LVTTL       :         : 5         : Y              
+RESERVED_INPUT               : N21       :        :                   :         : 5         :                
+sys_rst_n                    : N22       : input  : 3.3-V LVTTL       :         : 5         : Y              
+motor_out_pluse[4]           : P1        : output : 3.3-V LVTTL       :         : 2         : Y              
+motor_out_dir[4]             : P2        : output : 3.3-V LVTTL       :         : 2         : Y              
+motor_out_dir[5]             : P3        : output : 3.3-V LVTTL       :         : 2         : Y              
+motor_out_pluse[5]           : P4        : output : 3.3-V LVTTL       :         : 2         : Y              
+motor_out_enable[5]          : P5        : output : 3.3-V LVTTL       :         : 2         : Y              
+GND                          : P6        : gnd    :                   :         :           :                
+VCCINT                       : P7        : power  :                   : 1.2V    :           :                
+GND                          : P8        : gnd    :                   :         :           :                
+VCCINT                       : P9        : power  :                   : 1.2V    :           :                
+VCCINT                       : P10       : power  :                   : 1.2V    :           :                
+VCCINT                       : P11       : power  :                   : 1.2V    :           :                
+VCCINT                       : P12       : power  :                   : 1.2V    :           :                
+VCCINT                       : P13       : power  :                   : 1.2V    :           :                
+VCCINT                       : P14       : power  :                   : 1.2V    :           :                
+VCCINT                       : P15       : power  :                   : 1.2V    :           :                
+GND                          : P16       : gnd    :                   :         :           :                
+VCCINT                       : P17       : power  :                   : 1.2V    :           :                
+VCCIO5                       : P18       : power  :                   : 3.3V    : 5         :                
+GND                          : P19       : gnd    :                   :         :           :                
+fsmc_comm_addr[14]           : P20       : input  : 3.3-V LVTTL       :         : 5         : Y              
+RESERVED_INPUT               : P21       :        :                   :         : 5         :                
+RESERVED_INPUT               : P22       :        :                   :         : 5         :                
+motor_out_pluse[3]           : R1        : output : 3.3-V LVTTL       :         : 2         : Y              
+motor_out_dir[3]             : R2        : output : 3.3-V LVTTL       :         : 2         : Y              
+motor_out_dir[2]             : R3        : output : 3.3-V LVTTL       :         : 2         : Y              
+motor_out_pluse[2]           : R4        : output : 3.3-V LVTTL       :         : 2         : Y              
+motor_out_enable[2]          : R5        : output : 3.3-V LVTTL       :         : 2         : Y              
+VCCINT                       : R6        : power  :                   : 1.2V    :           :                
+GND                          : R7        : gnd    :                   :         :           :                
+VCCINT                       : R8        : power  :                   : 1.2V    :           :                
+GND                          : R9        : gnd    :                   :         :           :                
+VCCINT                       : R10       : power  :                   : 1.2V    :           :                
+GND                          : R11       : gnd    :                   :         :           :                
+VCCINT                       : R12       : power  :                   : 1.2V    :           :                
+GND                          : R13       : gnd    :                   :         :           :                
+motor_sensor_in_reset[12]    : R14       : input  : 3.3-V LVTTL       :         : 4         : Y              
+VCCINT                       : R15       : power  :                   : 1.2V    :           :                
+motor_sensor_in_reset[3]     : R16       : input  : 3.3-V LVTTL       :         : 4         : Y              
+motor_sensor_in_reset[4]     : R17       : input  : 3.3-V LVTTL       :         : 5         : Y              
+motor_sensor_in_reset[1]     : R18       : input  : 3.3-V LVTTL       :         : 5         : Y              
+fsmc_comm_addr[6]            : R19       : input  : 3.3-V LVTTL       :         : 5         : Y              
+fsmc_comm_addr[7]            : R20       : input  : 3.3-V LVTTL       :         : 5         : Y              
+RESERVED_INPUT               : R21       :        :                   :         : 5         :                
+fsmc_comm_data[7]            : R22       : bidir  : 3.3-V LVTTL       :         : 5         : Y              
+GND+                         : T1        :        :                   :         : 2         :                
+GND+                         : T2        :        :                   :         : 2         :                
+motor_out_enable[1]          : T3        : output : 3.3-V LVTTL       :         : 2         : Y              
+motor_out_dir[1]             : T4        : output : 3.3-V LVTTL       :         : 2         : Y              
+motor_out_pluse[1]           : T5        : output : 3.3-V LVTTL       :         : 2         : Y              
+VCCA1                        : T6        : power  :                   : 2.5V    :           :                
+VCCINT                       : T7        : power  :                   : 1.2V    :           :                
+GND                          : T8        : gnd    :                   :         :           :                
+VCCINT                       : T9        : power  :                   : 1.2V    :           :                
+GND                          : T10       : gnd    :                   :         :           :                
+VCCINT                       : T11       : power  :                   : 1.2V    :           :                
+GND                          : T12       : gnd    :                   :         :           :                
+VCCINT                       : T13       : power  :                   : 1.2V    :           :                
+GND                          : T14       : gnd    :                   :         :           :                
+RESERVED_INPUT               : T15       :        :                   :         : 4         :                
+motor_sensor_in_reset[6]     : T16       : input  : 3.3-V LVTTL       :         : 4         : Y              
+motor_sensor_in_reset[5]     : T17       : input  : 3.3-V LVTTL       :         : 5         : Y              
+fsmc_comm_addr[11]           : T18       : input  : 3.3-V LVTTL       :         : 5         : Y              
+fsmc_comm_addr[4]            : T19       : input  : 3.3-V LVTTL       :         : 5         : Y              
+fsmc_comm_addr[5]            : T20       : input  : 3.3-V LVTTL       :         : 5         : Y              
+GND+                         : T21       :        :                   :         : 5         :                
+GND+                         : T22       :        :                   :         : 5         :                
+motor_sensor_in_emergency_stop[5] : U1        : input  : 3.3-V LVTTL       :         : 2         : Y              
+motor_sensor_in_emergency_stop[4] : U2        : input  : 3.3-V LVTTL       :         : 2         : Y              
+GND                          : U3        : gnd    :                   :         :           :                
+VCCIO2                       : U4        : power  :                   : 3.3V    : 2         :                
+GNDA1                        : U5        : gnd    :                   :         :           :                
+VCCD_PLL1                    : U6        : power  :                   : 1.2V    :           :                
+GND                          : U7        : gnd    :                   :         :           :                
+VCCINT                       : U8        : power  :                   : 1.2V    :           :                
+motor_encoder_b[10]          : U9        : input  : 3.3-V LVTTL       :         : 3         : Y              
+motor_sensor_in_reset[13]    : U10       : input  : 3.3-V LVTTL       :         : 3         : Y              
+RESERVED_INPUT               : U11       :        :                   :         : 3         :                
+RESERVED_INPUT               : U12       :        :                   :         : 4         :                
+GND                          : U13       : gnd    :                   :         :           :                
+RESERVED_INPUT               : U14       :        :                   :         : 4         :                
+motor_sensor_in_reset[14]    : U15       : input  : 3.3-V LVTTL       :         : 4         : Y              
+fsmc_comm_addr[13]           : U16       : input  : 3.3-V LVTTL       :         : 4         : Y              
+motor_int_out[1]             : U17       : output : 3.3-V LVTTL       :         : 4         : Y              
+VCCA4                        : U18       : power  :                   : 2.5V    :           :                
+fsmc_comm_addr[9]            : U19       : input  : 3.3-V LVTTL       :         : 5         : Y              
+fsmc_comm_addr[8]            : U20       : input  : 3.3-V LVTTL       :         : 5         : Y              
+fsmc_comm_data[6]            : U21       : bidir  : 3.3-V LVTTL       :         : 5         : Y              
+fsmc_comm_data[5]            : U22       : bidir  : 3.3-V LVTTL       :         : 5         : Y              
+motor_sensor_in_emergency_stop[3] : V1        : input  : 3.3-V LVTTL       :         : 2         : Y              
+motor_sensor_in_emergency_stop[2] : V2        : input  : 3.3-V LVTTL       :         : 2         : Y              
+motor_sensor_in_emergency_stop[1] : V3        : input  : 3.3-V LVTTL       :         : 2         : Y              
+motor_sensor_in_reset[16]    : V4        : input  : 3.3-V LVTTL       :         : 2         : Y              
+RESERVED_INPUT               : V5        :        :                   :         : 3         :                
+GND                          : V6        : gnd    :                   :         :           :                
+VCCINT                       : V7        : power  :                   : 1.2V    :           :                
+motor_encoder_a[10]          : V8        : input  : 3.3-V LVTTL       :         : 3         : Y              
+RESERVED_INPUT               : V9        :        :                   :         : 3         :                
+RESERVED_INPUT               : V10       :        :                   :         : 3         :                
+motor_sensor_in_reset[10]    : V11       : input  : 3.3-V LVTTL       :         : 3         : Y              
+motor_sensor_in_reset[9]     : V12       : input  : 3.3-V LVTTL       :         : 4         : Y              
+motor_sensor_in_reset[8]     : V13       : input  : 3.3-V LVTTL       :         : 4         : Y              
+motor_sensor_in_reset[11]    : V14       : input  : 3.3-V LVTTL       :         : 4         : Y              
+RESERVED_INPUT               : V15       :        :                   :         : 4         :                
+RESERVED_INPUT               : V16       :        :                   :         : 4         :                
+VCCD_PLL4                    : V17       : power  :                   : 1.2V    :           :                
+GNDA4                        : V18       : gnd    :                   :         :           :                
+VCCIO5                       : V19       : power  :                   : 3.3V    : 5         :                
+GND                          : V20       : gnd    :                   :         :           :                
+fsmc_comm_data[4]            : V21       : bidir  : 3.3-V LVTTL       :         : 5         : Y              
+fsmc_comm_data[3]            : V22       : bidir  : 3.3-V LVTTL       :         : 5         : Y              
+motor_sensor_in_emergency_stop[7] : W1        : input  : 3.3-V LVTTL       :         : 2         : Y              
+motor_sensor_in_emergency_stop[8] : W2        : input  : 3.3-V LVTTL       :         : 2         : Y              
+GND                          : W3        : gnd    :                   :         :           :                
+VCCIO2                       : W4        : power  :                   : 3.3V    : 2         :                
+VCCIO3                       : W5        : power  :                   : 3.3V    : 3         :                
+RESERVED_INPUT               : W6        :        :                   :         : 3         :                
+motor_encoder_a[11]          : W7        : input  : 3.3-V LVTTL       :         : 3         : Y              
+RESERVED_INPUT               : W8        :        :                   :         : 3         :                
+VCCIO3                       : W9        : power  :                   : 3.3V    : 3         :                
+motor_encoder_b[9]           : W10       : input  : 3.3-V LVTTL       :         : 3         : Y              
+VCCIO3                       : W11       : power  :                   : 3.3V    : 3         :                
+VCCIO4                       : W12       : power  :                   : 3.3V    : 4         :                
+fsmc_comm_nadv               : W13       : input  : 3.3-V LVTTL       :         : 4         : Y              
+fsmc_comm_nwait              : W14       : output : 3.3-V LVTTL       :         : 4         : Y              
+fsmc_comm_noe                : W15       : input  : 3.3-V LVTTL       :         : 4         : Y              
+VCCIO4                       : W16       : power  :                   : 3.3V    : 4         :                
+motor_int_out[2]             : W17       : output : 3.3-V LVTTL       :         : 4         : Y              
+VCCIO4                       : W18       : power  :                   : 3.3V    : 4         :                
+motor_int_out[0]             : W19       : output : 3.3-V LVTTL       :         : 5         : Y              
+fsmc_comm_addr[12]           : W20       : input  : 3.3-V LVTTL       :         : 5         : Y              
+fsmc_comm_data[2]            : W21       : bidir  : 3.3-V LVTTL       :         : 5         : Y              
+fsmc_comm_data[1]            : W22       : bidir  : 3.3-V LVTTL       :         : 5         : Y              
+RESERVED_INPUT               : Y1        :        :                   :         : 2         :                
+motor_sensor_in_emergency_stop[12] : Y2        : input  : 3.3-V LVTTL       :         : 2         : Y              
+RESERVED_INPUT               : Y3        :        :                   :         : 3         :                
+RESERVED_INPUT               : Y4        :        :                   :         : 3         :                
+GND                          : Y5        : gnd    :                   :         :           :                
+RESERVED_INPUT               : Y6        :        :                   :         : 3         :                
+motor_encoder_b[11]          : Y7        : input  : 3.3-V LVTTL       :         : 3         : Y              
+RESERVED_INPUT               : Y8        :        :                   :         : 3         :                
+GND                          : Y9        : gnd    :                   :         :           :                
+motor_encoder_a[9]           : Y10       : input  : 3.3-V LVTTL       :         : 3         : Y              
+GND                          : Y11       : gnd    :                   :         :           :                
+GND                          : Y12       : gnd    :                   :         :           :                
+motor_sensor_in_reset[7]     : Y13       : input  : 3.3-V LVTTL       :         : 4         : Y              
+fsmc_comm_ne                 : Y14       : input  : 3.3-V LVTTL       :         : 4         : Y              
+fsmc_comm_nwe                : Y15       : input  : 3.3-V LVTTL       :         : 4         : Y              
+GND                          : Y16       : gnd    :                   :         :           :                
+motor_int_out[3]             : Y17       : output : 3.3-V LVTTL       :         : 4         : Y              
+GND                          : Y18       : gnd    :                   :         :           :                
+VCCIO5                       : Y19       : power  :                   : 3.3V    : 5         :                
+GND                          : Y20       : gnd    :                   :         :           :                
+fsmc_comm_data[0]            : Y21       : bidir  : 3.3-V LVTTL       :         : 5         : Y              
+fsmc_comm_data[8]            : Y22       : bidir  : 3.3-V LVTTL       :         : 5         : Y              

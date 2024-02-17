@@ -1,0 +1,2234 @@
+/*********************************************************************************************** 
+** Author        : DengXiaoJun(邓小俊)
+** Date          : 2023-10-27 17:08:07 +0800
+** Description   : When I Has Time ,I Will Write Description Below:
+** ModifyRecord1 :    
+** ModifyRecord2 :    
+** LastEditors   : DengXiaoJun(邓小俊)
+** LastEditTime  : 2023-12-06 14:01:34 +0800
+************************************************************************************************/ 
+#include "ModImplBaseMixBead.h"
+#include "ModTaskHeader.h"
+
+
+//输入单元列表 输入序号 有效电平
+const MODULE_INPUT_MAP_UNIT mixBeadPortInConfigArray[] = {
+    {INPUT_MIX_BEAD_UPDOWN_ORGIN,VALID_LEVEL_INPUT_MIX_BEAD_UPDOWN_ORGIN},//升降电机原点
+    {INPUT_MIX_BEAD_ROTATE_ORGIN,VALID_LEVEL_INPUT_MIX_BEAD_ROTATE_ORGIN},//混匀电机原点
+};
+#define LENGTH_MODULE_MIX_BEAD_PORT_IN_CONFIG_ARRAY       DIM_ARRAY_ELEMENT_COUNT(mixBeadPortInConfigArray)
+
+//输出单元列表 输入序号 有效电平
+const MODULE_OUTPUT_MAP_UNIT mixBeadPortOutConfigArray[] = {
+    {MODULE_BASE_OUTPUT_PIN_RESERVE,VALID_LEVEL_MODULE_BASE_OUTPUT_PIN_RESERVE},
+};
+#define LENGTH_MODULE_MIX_BEAD_PORT_OUT_CONFIG_ARRAY       DIM_ARRAY_ELEMENT_COUNT(mixBeadPortOutConfigArray)
+
+
+//电机控制列表
+const MODULE_STEP_MOTOR_CONFIG mixBeadStepMotorConfigArray[] = {
+    {MIX_BEAD_STEP_MOTOR_UPDOWN_SYS_ID,60000,INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_UPDOWN},//升降
+    {MIX_BEAD_STEP_MOTOR_ROTATE_SYS_ID,60000,INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_ROTATE},//旋转
+};
+#define LENGTH_MODULE_MIX_BEAD_STEP_MOTOR_CONFIG_ARRAY     DIM_ARRAY_ELEMENT_COUNT(mixBeadStepMotorConfigArray)
+
+//读取模块输入
+static ERROR_SUB ModImplBaseMixBeadReadPortInSub(uint8_t portIdx,PIN_STATE* pinStatePtr)
+{
+    ERROR_SUB errorSub = ERROR_SUB_OK;
+    //调用基础实现
+    errorSub = H360SysActModInputRead(portIdx,LENGTH_MODULE_MIX_BEAD_PORT_IN_CONFIG_ARRAY,mixBeadPortInConfigArray,
+                                        pinStatePtr);
+    return errorSub;
+}
+
+//写入模块输出
+static ERROR_SUB ModImplBaseMixBeadWritePortOutSub(uint8_t portIdx,PIN_STATE setState)
+{
+    ERROR_SUB errorSub = ERROR_SUB_OK;
+    //调用基础实现
+    errorSub = H360SysActModOutputWrite(portIdx,setState,LENGTH_MODULE_MIX_BEAD_PORT_OUT_CONFIG_ARRAY,mixBeadPortOutConfigArray);
+    return errorSub;
+}
+
+//步进电机复位
+static ERROR_SUB ModImplBaseMixBeadStepMotorResetSub(uint8_t stepMotorIdx,int32_t* motorCoordinatePos)
+{
+    return CommonSrvImplBaseModuleStepMotorReset(stepMotorIdx,mixBeadStepMotorConfigArray,
+                                                    LENGTH_MODULE_MIX_BEAD_STEP_MOTOR_CONFIG_ARRAY,
+                                                    motorCoordinatePos);
+}
+
+//步进电机走位
+static ERROR_SUB ModImplBaseMixBeadStepMotorRunStepsSub(uint8_t stepMotorIdx,int32_t runSteps,int32_t* motorCoordinatePos)
+{
+    return CommonSrvImplBaseModuleStepMotorRunSteps(stepMotorIdx,runSteps,mixBeadStepMotorConfigArray,
+                                                        LENGTH_MODULE_MIX_BEAD_STEP_MOTOR_CONFIG_ARRAY,
+                                                        motorCoordinatePos);
+}
+
+//读取模块输入
+void ModImplBaseMixBeadReadPortIn(uint8_t portIdx,SYS_RESULT_PACK* resultPackPtr,uint8_t** dataBufPtrPtr,uint16_t* dataBufLen)
+{
+    *dataBufLen = 2;
+    *dataBufPtrPtr = UserMemMallocWhileSuccess(MEM_REGION_MOD_TASK,(*dataBufLen));
+    ERROR_SUB errorSub = ERROR_SUB_OK;
+    PIN_STATE readInputState = PIN_STATE_INVALID;
+    //返回数据赋值
+    (*dataBufPtrPtr)[0] = portIdx;
+    (*dataBufPtrPtr)[1] = readInputState;
+    //读取输入
+    errorSub = ModImplBaseMixBeadReadPortInSub(portIdx,&readInputState);
+    if(errorSub != ERROR_SUB_OK)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_READ_MOD_INPUT,
+                                        ERROR_LEVEL_ERROR,errorSub);
+        return;
+    }
+    //返回数据赋值
+    (*dataBufPtrPtr)[1] = readInputState;
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+//写入模块输出
+void ModImplBaseMixBeadWritePortOut(uint8_t portIdx,PIN_STATE setState,SYS_RESULT_PACK* resultPackPtr,uint8_t** dataBufPtrPtr,uint16_t* dataBufLen)
+{
+    *dataBufLen = 1;
+    *dataBufPtrPtr = UserMemMallocWhileSuccess(MEM_REGION_MOD_TASK,(*dataBufLen));
+    ERROR_SUB errorSub = ERROR_SUB_OK;
+    PIN_STATE readInputState = PIN_STATE_INVALID;
+    //返回数据赋值
+    (*dataBufPtrPtr)[0] = portIdx;
+    //写入输出
+    errorSub = ModImplBaseMixBeadWritePortOutSub(portIdx,setState);
+    if(errorSub != ERROR_SUB_OK)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_WRITE_MOD_OUTPUT,
+                                        ERROR_LEVEL_ERROR,errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+//步进电机复位
+void ModImplBaseMixBeadStepMotorReset(uint8_t stepMotorIdx,SYS_RESULT_PACK* resultPackPtr,uint8_t** dataBufPtrPtr,uint16_t* dataBufLen)
+{
+    *dataBufLen = 5;
+    *dataBufPtrPtr = UserMemMallocWhileSuccess(MEM_REGION_MOD_TASK,(*dataBufLen));
+    ERROR_SUB errorSub = ERROR_SUB_OK;
+    int32_t motorPosAfterReset = 0;
+    //返回数据赋值
+    (*dataBufPtrPtr)[0] = stepMotorIdx;
+    ProtUtilWriteInt32ToBuffer(motorPosAfterReset,(*dataBufPtrPtr)+1);
+    //电机复位
+    errorSub = ModImplBaseMixBeadStepMotorResetSub(stepMotorIdx,&motorPosAfterReset);
+    if(errorSub != ERROR_SUB_OK)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_STEP_MOTOR_RESET,
+                                        ERROR_LEVEL_ERROR,errorSub);
+        return;
+    }
+    //写入参数
+    ProtUtilWriteInt32ToBuffer(motorPosAfterReset,(*dataBufPtrPtr)+1);
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+//步进电机走位
+void ModImplBaseMixBeadStepMotorRunSteps(uint8_t stepMotorIdx,int32_t runSteps,SYS_RESULT_PACK* resultPackPtr,uint8_t** dataBufPtrPtr,uint16_t* dataBufLen)
+{
+    *dataBufLen = 5;
+    *dataBufPtrPtr = UserMemMallocWhileSuccess(MEM_REGION_MOD_TASK,(*dataBufLen));
+    ERROR_SUB errorSub = ERROR_SUB_OK;
+    int32_t motorPosAfterRun = 0;
+    //返回数据赋值
+    (*dataBufPtrPtr)[0] = stepMotorIdx;
+    ProtUtilWriteInt32ToBuffer(motorPosAfterRun,(*dataBufPtrPtr)+1);
+    //电机走位
+    errorSub = ModImplBaseMixBeadStepMotorRunStepsSub(stepMotorIdx,runSteps,&motorPosAfterRun);
+    if(errorSub != ERROR_SUB_OK)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_STEP_MOTOR_RUN_STEP,
+                                        ERROR_LEVEL_ERROR,errorSub);
+        return;
+    }
+    //写入参数
+    ProtUtilWriteInt32ToBuffer(motorPosAfterRun,(*dataBufPtrPtr)+1);
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+/*-------------------------------------清洗混匀上升---------------------------------------*/
+void ModImplMixBeadUpMode1(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE1,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE1;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_UP_MODE1_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadUpMode2(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE2,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE2;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_UP_MODE2_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadUpMode3(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE3,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE3;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_UP_MODE3_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadUpMode4(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE4,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE4;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_UP_MODE4_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadUpMode5(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE5,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE5;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_UP_MODE5_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadUpMode6(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE6,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE6;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_UP_MODE6_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadUpMode7(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE7,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE7;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_UP_MODE7_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadUpMode8(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE8,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE8;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_UP_MODE8_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadUpMode9(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE9,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE9;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_UP_MODE9_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadUpMode10(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE10,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE10;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_UP_MODE10_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+/*-------------------------------------清洗混匀旋转,不带升降---------------------------------------*/
+void ModImplMixBeadStartRotateMode1(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE1,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE1;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE1_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE1_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadStartRotateMode2(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE2,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE2;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE2_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE2_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadStartRotateMode3(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE3,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE3;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE3_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE3_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadStartRotateMode4(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE4,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE4;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE4_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE4_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadStartRotateMode5(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE5,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE5;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE5_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE5_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadStartRotateMode6(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE6,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE6;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE6_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE6_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadStartRotateMode7(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE7,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE7;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE7_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE7_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadStartRotateMode8(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE8,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE8;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE8_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE8_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadStartRotateMode9(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE9,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE9;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE9_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE9_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadStartRotateMode10(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE10,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE10;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE10_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_START_ROTATE_MODE10_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+/*--------------------------------------清洗混匀集成混匀--------------------------------------*/
+void ModImplMixBeadRotateIntegratedMode1(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE1,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE1;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE1_UP_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE1,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE1;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE1_ROTATE_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE1_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //回零指令结构体
+    IPC_STEP_MOTOR_CMD_RETURN_ZERO stepMotorReturnZeroCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_UPDOWN,&paramUtil);
+    //配置回零指令结构体,升降回零
+    IPC_StepMotorBaseSetReturnZeroCmdDefault(&stepMotorReturnZeroCmd);
+    stepMotorReturnZeroCmd.needReset = ENABLE;
+    stepMotorReturnZeroCmd.timeOutMs = 5000;
+    stepMotorReturnZeroCmd.returnZeroCorrectPos = paramUtil;
+    stepMotorReturnZeroCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_DOWN_MODE1;
+    IPC_SrvStepMotorReturnZeroWhileAck(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorReturnZeroCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE1_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //复位指令结构体
+    IPC_STEP_MOTOR_CMD_RESET stepMotorResetCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_ROTATE,&paramUtil);
+    //配置复位指令结构体,旋转复位
+    IPC_StepMotorBaseSetResetCmdDefault(&stepMotorResetCmd);
+    stepMotorResetCmd.resetCorrectCurve = S_CURVE_MIX_BEAD_ROTATE_DEBUG;//修正曲线
+    stepMotorResetCmd.resetCorrectPos = paramUtil;//复位修正
+    stepMotorResetCmd.timeOutMs = 5000;//超时时间
+    //开始复位
+    IPC_SrvStepMotorResetWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorResetCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE1_ROTATE_RESET,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待升降电机回零完成
+    IPC_SrvStepMotorReturnZeroWaitCmdReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE1_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadRotateIntegratedMode2(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE2,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE2;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE2_UP_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE2,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE2;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE2_ROTATE_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE2_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //回零指令结构体
+    IPC_STEP_MOTOR_CMD_RETURN_ZERO stepMotorReturnZeroCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_UPDOWN,&paramUtil);
+    //配置回零指令结构体,升降回零
+    IPC_StepMotorBaseSetReturnZeroCmdDefault(&stepMotorReturnZeroCmd);
+    stepMotorReturnZeroCmd.needReset = ENABLE;
+    stepMotorReturnZeroCmd.timeOutMs = 5000;
+    stepMotorReturnZeroCmd.returnZeroCorrectPos = paramUtil;
+    stepMotorReturnZeroCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_DOWN_MODE2;
+    IPC_SrvStepMotorReturnZeroWhileAck(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorReturnZeroCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE2_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //复位指令结构体
+    IPC_STEP_MOTOR_CMD_RESET stepMotorResetCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_ROTATE,&paramUtil);
+    //配置复位指令结构体,旋转复位
+    IPC_StepMotorBaseSetResetCmdDefault(&stepMotorResetCmd);
+    stepMotorResetCmd.resetCorrectCurve = S_CURVE_MIX_BEAD_ROTATE_DEBUG;//修正曲线
+    stepMotorResetCmd.resetCorrectPos = paramUtil;//复位修正
+    stepMotorResetCmd.timeOutMs = 5000;//超时时间
+    //开始复位
+    IPC_SrvStepMotorResetWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorResetCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE2_ROTATE_RESET,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待升降电机回零完成
+    IPC_SrvStepMotorReturnZeroWaitCmdReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE2_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadRotateIntegratedMode3(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE3,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE3;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE3_UP_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE3,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE3;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE3_ROTATE_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE3_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //回零指令结构体
+    IPC_STEP_MOTOR_CMD_RETURN_ZERO stepMotorReturnZeroCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_UPDOWN,&paramUtil);
+    //配置回零指令结构体,升降回零
+    IPC_StepMotorBaseSetReturnZeroCmdDefault(&stepMotorReturnZeroCmd);
+    stepMotorReturnZeroCmd.needReset = ENABLE;
+    stepMotorReturnZeroCmd.timeOutMs = 5000;
+    stepMotorReturnZeroCmd.returnZeroCorrectPos = paramUtil;
+    stepMotorReturnZeroCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_DOWN_MODE3;
+    IPC_SrvStepMotorReturnZeroWhileAck(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorReturnZeroCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE3_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //复位指令结构体
+    IPC_STEP_MOTOR_CMD_RESET stepMotorResetCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_ROTATE,&paramUtil);
+    //配置复位指令结构体,旋转复位
+    IPC_StepMotorBaseSetResetCmdDefault(&stepMotorResetCmd);
+    stepMotorResetCmd.resetCorrectCurve = S_CURVE_MIX_BEAD_ROTATE_DEBUG;//修正曲线
+    stepMotorResetCmd.resetCorrectPos = paramUtil;//复位修正
+    stepMotorResetCmd.timeOutMs = 5000;//超时时间
+    //开始复位
+    IPC_SrvStepMotorResetWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorResetCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE3_ROTATE_RESET,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待升降电机回零完成
+    IPC_SrvStepMotorReturnZeroWaitCmdReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE3_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadRotateIntegratedMode4(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE4,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE4;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE4_UP_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE4,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE4;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE4_ROTATE_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE4_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //回零指令结构体
+    IPC_STEP_MOTOR_CMD_RETURN_ZERO stepMotorReturnZeroCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_UPDOWN,&paramUtil);
+    //配置回零指令结构体,升降回零
+    IPC_StepMotorBaseSetReturnZeroCmdDefault(&stepMotorReturnZeroCmd);
+    stepMotorReturnZeroCmd.needReset = ENABLE;
+    stepMotorReturnZeroCmd.timeOutMs = 5000;
+    stepMotorReturnZeroCmd.returnZeroCorrectPos = paramUtil;
+    stepMotorReturnZeroCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_DOWN_MODE4;
+    IPC_SrvStepMotorReturnZeroWhileAck(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorReturnZeroCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE4_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //复位指令结构体
+    IPC_STEP_MOTOR_CMD_RESET stepMotorResetCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_ROTATE,&paramUtil);
+    //配置复位指令结构体,旋转复位
+    IPC_StepMotorBaseSetResetCmdDefault(&stepMotorResetCmd);
+    stepMotorResetCmd.resetCorrectCurve = S_CURVE_MIX_BEAD_ROTATE_DEBUG;//修正曲线
+    stepMotorResetCmd.resetCorrectPos = paramUtil;//复位修正
+    stepMotorResetCmd.timeOutMs = 5000;//超时时间
+    //开始复位
+    IPC_SrvStepMotorResetWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorResetCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE4_ROTATE_RESET,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待升降电机回零完成
+    IPC_SrvStepMotorReturnZeroWaitCmdReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE4_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadRotateIntegratedMode5(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE5,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE5;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE5_UP_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE5,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE5;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE5_ROTATE_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE5_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //回零指令结构体
+    IPC_STEP_MOTOR_CMD_RETURN_ZERO stepMotorReturnZeroCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_UPDOWN,&paramUtil);
+    //配置回零指令结构体,升降回零
+    IPC_StepMotorBaseSetReturnZeroCmdDefault(&stepMotorReturnZeroCmd);
+    stepMotorReturnZeroCmd.needReset = ENABLE;
+    stepMotorReturnZeroCmd.timeOutMs = 5000;
+    stepMotorReturnZeroCmd.returnZeroCorrectPos = paramUtil;
+    stepMotorReturnZeroCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_DOWN_MODE5;
+    IPC_SrvStepMotorReturnZeroWhileAck(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorReturnZeroCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE5_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //复位指令结构体
+    IPC_STEP_MOTOR_CMD_RESET stepMotorResetCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_ROTATE,&paramUtil);
+    //配置复位指令结构体,旋转复位
+    IPC_StepMotorBaseSetResetCmdDefault(&stepMotorResetCmd);
+    stepMotorResetCmd.resetCorrectCurve = S_CURVE_MIX_BEAD_ROTATE_DEBUG;//修正曲线
+    stepMotorResetCmd.resetCorrectPos = paramUtil;//复位修正
+    stepMotorResetCmd.timeOutMs = 5000;//超时时间
+    //开始复位
+    IPC_SrvStepMotorResetWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorResetCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE5_ROTATE_RESET,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待升降电机回零完成
+    IPC_SrvStepMotorReturnZeroWaitCmdReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE5_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadRotateIntegratedMode6(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE6,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE6;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE6_UP_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE6,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE6;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE6_ROTATE_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE6_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //回零指令结构体
+    IPC_STEP_MOTOR_CMD_RETURN_ZERO stepMotorReturnZeroCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_UPDOWN,&paramUtil);
+    //配置回零指令结构体,升降回零
+    IPC_StepMotorBaseSetReturnZeroCmdDefault(&stepMotorReturnZeroCmd);
+    stepMotorReturnZeroCmd.needReset = ENABLE;
+    stepMotorReturnZeroCmd.timeOutMs = 5000;
+    stepMotorReturnZeroCmd.returnZeroCorrectPos = paramUtil;
+    stepMotorReturnZeroCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_DOWN_MODE6;
+    IPC_SrvStepMotorReturnZeroWhileAck(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorReturnZeroCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE6_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //复位指令结构体
+    IPC_STEP_MOTOR_CMD_RESET stepMotorResetCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_ROTATE,&paramUtil);
+    //配置复位指令结构体,旋转复位
+    IPC_StepMotorBaseSetResetCmdDefault(&stepMotorResetCmd);
+    stepMotorResetCmd.resetCorrectCurve = S_CURVE_MIX_BEAD_ROTATE_DEBUG;//修正曲线
+    stepMotorResetCmd.resetCorrectPos = paramUtil;//复位修正
+    stepMotorResetCmd.timeOutMs = 5000;//超时时间
+    //开始复位
+    IPC_SrvStepMotorResetWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorResetCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE6_ROTATE_RESET,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待升降电机回零完成
+    IPC_SrvStepMotorReturnZeroWaitCmdReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE6_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadRotateIntegratedMode7(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE7,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE7;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE7_UP_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE7,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE7;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE7_ROTATE_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE7_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //回零指令结构体
+    IPC_STEP_MOTOR_CMD_RETURN_ZERO stepMotorReturnZeroCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_UPDOWN,&paramUtil);
+    //配置回零指令结构体,升降回零
+    IPC_StepMotorBaseSetReturnZeroCmdDefault(&stepMotorReturnZeroCmd);
+    stepMotorReturnZeroCmd.needReset = ENABLE;
+    stepMotorReturnZeroCmd.timeOutMs = 5000;
+    stepMotorReturnZeroCmd.returnZeroCorrectPos = paramUtil;
+    stepMotorReturnZeroCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_DOWN_MODE7;
+    IPC_SrvStepMotorReturnZeroWhileAck(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorReturnZeroCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE7_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //复位指令结构体
+    IPC_STEP_MOTOR_CMD_RESET stepMotorResetCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_ROTATE,&paramUtil);
+    //配置复位指令结构体,旋转复位
+    IPC_StepMotorBaseSetResetCmdDefault(&stepMotorResetCmd);
+    stepMotorResetCmd.resetCorrectCurve = S_CURVE_MIX_BEAD_ROTATE_DEBUG;//修正曲线
+    stepMotorResetCmd.resetCorrectPos = paramUtil;//复位修正
+    stepMotorResetCmd.timeOutMs = 5000;//超时时间
+    //开始复位
+    IPC_SrvStepMotorResetWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorResetCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE7_ROTATE_RESET,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待升降电机回零完成
+    IPC_SrvStepMotorReturnZeroWaitCmdReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE7_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadRotateIntegratedMode8(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE8,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE8;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE8_UP_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE8,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE8;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE8_ROTATE_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE8_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //回零指令结构体
+    IPC_STEP_MOTOR_CMD_RETURN_ZERO stepMotorReturnZeroCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_UPDOWN,&paramUtil);
+    //配置回零指令结构体,升降回零
+    IPC_StepMotorBaseSetReturnZeroCmdDefault(&stepMotorReturnZeroCmd);
+    stepMotorReturnZeroCmd.needReset = ENABLE;
+    stepMotorReturnZeroCmd.timeOutMs = 5000;
+    stepMotorReturnZeroCmd.returnZeroCorrectPos = paramUtil;
+    stepMotorReturnZeroCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_DOWN_MODE8;
+    IPC_SrvStepMotorReturnZeroWhileAck(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorReturnZeroCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE8_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //复位指令结构体
+    IPC_STEP_MOTOR_CMD_RESET stepMotorResetCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_ROTATE,&paramUtil);
+    //配置复位指令结构体,旋转复位
+    IPC_StepMotorBaseSetResetCmdDefault(&stepMotorResetCmd);
+    stepMotorResetCmd.resetCorrectCurve = S_CURVE_MIX_BEAD_ROTATE_DEBUG;//修正曲线
+    stepMotorResetCmd.resetCorrectPos = paramUtil;//复位修正
+    stepMotorResetCmd.timeOutMs = 5000;//超时时间
+    //开始复位
+    IPC_SrvStepMotorResetWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorResetCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE8_ROTATE_RESET,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待升降电机回零完成
+    IPC_SrvStepMotorReturnZeroWaitCmdReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE8_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadRotateIntegratedMode9(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE9,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE9;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE9_UP_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE9,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE9;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE9_ROTATE_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE9_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //回零指令结构体
+    IPC_STEP_MOTOR_CMD_RETURN_ZERO stepMotorReturnZeroCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_UPDOWN,&paramUtil);
+    //配置回零指令结构体,升降回零
+    IPC_StepMotorBaseSetReturnZeroCmdDefault(&stepMotorReturnZeroCmd);
+    stepMotorReturnZeroCmd.needReset = ENABLE;
+    stepMotorReturnZeroCmd.timeOutMs = 5000;
+    stepMotorReturnZeroCmd.returnZeroCorrectPos = paramUtil;
+    stepMotorReturnZeroCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_DOWN_MODE9;
+    IPC_SrvStepMotorReturnZeroWhileAck(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorReturnZeroCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE9_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //复位指令结构体
+    IPC_STEP_MOTOR_CMD_RESET stepMotorResetCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_ROTATE,&paramUtil);
+    //配置复位指令结构体,旋转复位
+    IPC_StepMotorBaseSetResetCmdDefault(&stepMotorResetCmd);
+    stepMotorResetCmd.resetCorrectCurve = S_CURVE_MIX_BEAD_ROTATE_DEBUG;//修正曲线
+    stepMotorResetCmd.resetCorrectPos = paramUtil;//复位修正
+    stepMotorResetCmd.timeOutMs = 5000;//超时时间
+    //开始复位
+    IPC_SrvStepMotorResetWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorResetCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE9_ROTATE_RESET,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待升降电机回零完成
+    IPC_SrvStepMotorReturnZeroWaitCmdReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE9_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+void ModImplMixBeadRotateIntegratedMode10(SYS_RESULT_PACK* resultPackPtr)
+{
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //走坐标
+    IPC_STEP_MOTOR_CMD_RUN_COORDINATE stepMotorRunCoordinateCmd;
+    //读取升起来的高度
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_UP_POS_MODE10,&paramUtil);
+    //走坐标指令初始化
+    IPC_StepMotorBaseSetRunCoordinateCmdDefault(&stepMotorRunCoordinateCmd);
+    stepMotorRunCoordinateCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_UP_MODE10;
+    stepMotorRunCoordinateCmd.targetCoordinate = paramUtil;
+    stepMotorRunCoordinateCmd.timeOutMs = 5000,
+    //电机抬起来
+    IPC_SrvStepMotorRunCoordinateWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorRunCoordinateCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE10_UP_RUN_COORDINATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //持续运转
+    IPC_STEP_MOTOR_CMD_RUN_ALWAY stepMotorRunAlwaysCmd;
+    //读取运转时间
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_ROTATE_TIME_MS_MODE10,&paramUtil);
+    //填充持续运转指令
+    IPC_StepMotorBaseSetRunAlwaysCmdDefault(&stepMotorRunAlwaysCmd);
+    stepMotorRunAlwaysCmd.runAlwaysDir = STEP_MOTOR_DIR_CW;
+    stepMotorRunAlwaysCmd.runStepCurve = S_CURVE_MIX_BEAD_ROTATE_MODE10;
+    //开始持续运转
+    IPC_SrvStepMotorRunAlwaysWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorRunAlwaysCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE10_ROTATE_RUN_ALWAYS,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待运转指定时间
+    CoreDelayMsSensitivity(paramUtil);
+    //减速停止
+    IPC_STEP_MOTOR_CMD_STOP_SLOW stepMotorSlowStopCmd;
+    //填充减速停止
+    IPC_StepMotorBaseSetStopSlowCmdDefault(&stepMotorSlowStopCmd);
+    stepMotorSlowStopCmd.slowDownMode = 1;//快速减速
+    stepMotorSlowStopCmd.slowDownSteps = 0;//减速步数,目前没使用
+    stepMotorSlowStopCmd.timeOutMs = 5000;//减速停止时间
+    //开始减速停止
+    IPC_SrvStepMotorStopSlowDownWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorSlowStopCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE10_DECC_STOP,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //回零指令结构体
+    IPC_STEP_MOTOR_CMD_RETURN_ZERO stepMotorReturnZeroCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_UPDOWN,&paramUtil);
+    //配置回零指令结构体,升降回零
+    IPC_StepMotorBaseSetReturnZeroCmdDefault(&stepMotorReturnZeroCmd);
+    stepMotorReturnZeroCmd.needReset = ENABLE;
+    stepMotorReturnZeroCmd.timeOutMs = 5000;
+    stepMotorReturnZeroCmd.returnZeroCorrectPos = paramUtil;
+    stepMotorReturnZeroCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_DOWN_MODE10;
+    IPC_SrvStepMotorReturnZeroWhileAck(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorReturnZeroCmd,&sysResultPack);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE10_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //复位指令结构体
+    IPC_STEP_MOTOR_CMD_RESET stepMotorResetCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_ROTATE,&paramUtil);
+    //配置复位指令结构体,旋转复位
+    IPC_StepMotorBaseSetResetCmdDefault(&stepMotorResetCmd);
+    stepMotorResetCmd.resetCorrectCurve = S_CURVE_MIX_BEAD_ROTATE_DEBUG;//修正曲线
+    stepMotorResetCmd.resetCorrectPos = paramUtil;//复位修正
+    stepMotorResetCmd.timeOutMs = 5000;//超时时间
+    //开始复位
+    IPC_SrvStepMotorResetWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorResetCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE10_ROTATE_RESET,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //等待升降电机回零完成
+    IPC_SrvStepMotorReturnZeroWaitCmdReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_INTEGRATED_MODE10_DOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+/*--------------------------------------函数指针数组集合--------------------------------------*/
+//清洗混匀上升的函数指针数组
+static const ModImplMixUpFuncPtr ModImplMixBeadUpFuncPtrArray[] = 
+{
+    ModImplMixBeadUpMode1,
+    ModImplMixBeadUpMode2,
+    ModImplMixBeadUpMode3,
+    ModImplMixBeadUpMode4,
+    ModImplMixBeadUpMode5,
+    ModImplMixBeadUpMode6,
+    ModImplMixBeadUpMode7,
+    ModImplMixBeadUpMode8,
+    ModImplMixBeadUpMode9,
+    ModImplMixBeadUpMode10,
+};
+
+//清洗混匀旋转不带升降的函数指针数组
+static const ModImplMixStartRotateFuncPtr ModImplMixBeadStartRotateFuncPtrArray[] = {
+    ModImplMixBeadStartRotateMode1,
+    ModImplMixBeadStartRotateMode2,
+    ModImplMixBeadStartRotateMode3,
+    ModImplMixBeadStartRotateMode4,
+    ModImplMixBeadStartRotateMode5,
+    ModImplMixBeadStartRotateMode6,
+    ModImplMixBeadStartRotateMode7,
+    ModImplMixBeadStartRotateMode8,
+    ModImplMixBeadStartRotateMode9,
+    ModImplMixBeadStartRotateMode10,
+};
+
+//清洗混匀集成混匀的函数指针数组
+static const ModImplMixRotateIntegratedFuncPtr ModImplMixBeadRotateIntegratedFuncPtrArray[] = {
+    ModImplMixBeadRotateIntegratedMode1,
+    ModImplMixBeadRotateIntegratedMode2,
+    ModImplMixBeadRotateIntegratedMode3,
+    ModImplMixBeadRotateIntegratedMode4,
+    ModImplMixBeadRotateIntegratedMode5,
+    ModImplMixBeadRotateIntegratedMode6,
+    ModImplMixBeadRotateIntegratedMode7,
+    ModImplMixBeadRotateIntegratedMode8,
+    ModImplMixBeadRotateIntegratedMode9,
+    ModImplMixBeadRotateIntegratedMode10,
+};
+
+//复位
+void ModImplBaseMixBeadReset(SYS_RESULT_PACK* resultPackPtr,uint8_t** dataBufPtrPtr,uint16_t* dataBufLen)
+{
+    //设置返回值
+    *dataBufLen = 0;
+    *dataBufPtrPtr = NULL;
+    //执行操作
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //复位指令结构体
+    IPC_STEP_MOTOR_CMD_RESET stepMotorResetCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_UPDOWN,&paramUtil);
+    //配置复位指令结构体,升降复位
+    IPC_StepMotorBaseSetResetCmdDefault(&stepMotorResetCmd);
+    stepMotorResetCmd.resetCorrectCurve = S_CURVE_MIX_BEAD_UPDOWN_DEBUG;//修正曲线
+    stepMotorResetCmd.resetCorrectPos = paramUtil;//复位修正
+    stepMotorResetCmd.timeOutMs = 60000;//超时时间
+    //开始复位
+    IPC_SrvStepMotorResetWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorResetCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_RESET_UPDOWN,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_ROTATE,&paramUtil);
+    //配置复位指令结构体,旋转复位
+    IPC_StepMotorBaseSetResetCmdDefault(&stepMotorResetCmd);
+    stepMotorResetCmd.resetCorrectCurve = S_CURVE_MIX_BEAD_ROTATE_DEBUG;//修正曲线
+    stepMotorResetCmd.resetCorrectPos = paramUtil;//复位修正
+    stepMotorResetCmd.timeOutMs = 5000;//超时时间
+    //开始复位
+    IPC_SrvStepMotorResetWhileReturn(MIX_BEAD_STEP_MOTOR_ROTATE_LOCAL_ID,&stepMotorResetCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_RESET_ROTATE,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+//清洗混匀升起来
+void ModImplBaseMixBeadUp(MIX_MODE mixMode,SYS_RESULT_PACK* resultPackPtr,uint8_t** dataBufPtrPtr,uint16_t* dataBufLen)
+{
+    //设置返回值
+    *dataBufLen = 0;
+    *dataBufPtrPtr = NULL;
+    //模式修正
+    if(mixMode > MIX_MODE_MAX)
+    {
+        mixMode = MIX_MODE_MAX;
+    }
+    //调用相应的函数
+    ModImplMixBeadUpFuncPtrArray[mixMode](resultPackPtr);
+    if(resultPackPtr->resultCode != PROT_RESULT_SUCCESS)
+    {
+        //发生错误
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+
+//清洗混匀降下去
+void ModImplBaseMixBeadDown(SYS_RESULT_PACK* resultPackPtr,uint8_t** dataBufPtrPtr,uint16_t* dataBufLen)
+{
+    //设置返回值
+    *dataBufLen = 0;
+    *dataBufPtrPtr = NULL;
+    //执行操作
+    //参数配置
+    SYS_RESULT_PACK sysResultPack;
+    //参数辅助,用于系统参数读取
+    int32_t paramUtil;
+    //回零指令结构体
+    IPC_STEP_MOTOR_CMD_RETURN_ZERO stepMotorReturnZeroCmd;
+    //读取复位修正
+    SysParamReadSingle(INDEX_MAIN_SYS_PARAM_MIX_BEAD,INDEX_SUB_PARAM_MIX_BEAD_RESET_CORRECT_UPDOWN,&paramUtil);
+    //配置回零指令结构体,升降回零
+    IPC_StepMotorBaseSetReturnZeroCmdDefault(&stepMotorReturnZeroCmd);
+    stepMotorReturnZeroCmd.needReset = ENABLE;
+    stepMotorReturnZeroCmd.timeOutMs = 5000;
+    stepMotorReturnZeroCmd.returnZeroCorrectPos = paramUtil;
+    stepMotorReturnZeroCmd.runStepCurve = S_CURVE_MIX_BEAD_UPDOWN_DOWN_MODE1;
+    IPC_SrvStepMotorReturnZeroWhileReturn(MIX_BEAD_STEP_MOTOR_UPDOWN_LOCAL_ID,&stepMotorReturnZeroCmd,&sysResultPack,NULL);
+    if(sysResultPack.resultCode != PROT_RESULT_SUCCESS)
+    {
+        //构建错误代码
+        CoreUtilSetSystemResultPack(resultPackPtr,PROT_RESULT_FAIL,ERROR_MAIN_H360_MIX_BEAD_DOWN_UPDOWN_RETURN_ZERO,
+                                        ERROR_LEVEL_ERROR,sysResultPack.errorSub);
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+
+//清洗混匀转一次
+void ModImplBaseMixBeadStartRotate(MIX_MODE mixMode,SYS_RESULT_PACK* resultPackPtr,uint8_t** dataBufPtrPtr,uint16_t* dataBufLen)
+{
+    //设置返回值
+    *dataBufLen = 0;
+    *dataBufPtrPtr = NULL;
+    //模式修正
+    if(mixMode > MIX_MODE_MAX)
+    {
+        mixMode = MIX_MODE_MAX;
+    }
+    //调用相应的函数
+    ModImplMixBeadStartRotateFuncPtrArray[mixMode](resultPackPtr);
+    if(resultPackPtr->resultCode != PROT_RESULT_SUCCESS)
+    {
+        //发生错误
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+
+//集成清洗混匀
+void ModImplBaseMixBeadRotateIntegrated(MIX_MODE mixMode,SYS_RESULT_PACK* resultPackPtr,uint8_t** dataBufPtrPtr,uint16_t* dataBufLen)
+{
+    //设置返回值
+    *dataBufLen = 0;
+    *dataBufPtrPtr = NULL;
+    //模式修正
+    if(mixMode > MIX_MODE_MAX)
+    {
+        mixMode = MIX_MODE_MAX;
+    }
+    //等待反应杯稳定
+    CoreDelayMsSensitivity(MIX_BEAD_NEED_WAIT_CUP_STABLE_MS);
+    //调用相应的函数
+    ModImplMixBeadRotateIntegratedFuncPtrArray[mixMode](resultPackPtr);
+    if(resultPackPtr->resultCode != PROT_RESULT_SUCCESS)
+    {
+        //发生错误
+        return;
+    }
+    //构建完成无错误
+    CoreUtilSetSystemResultPackNoError(resultPackPtr);
+    return;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../../../CommonCode/ADT"
+		},
+		{
+			"path": "../../../../../CommonCode/DriverF407"
+		},
+		{
+			"path": "../../../../../CommonCode/HAL_F4"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolCan"
+		},
+		{
+			"path": "../../../../../CommonCode/RTT"
+		},
+		{
+			"path": "../../../../../CommonCode/ThreadX"
+		},
+		{
+			"path": "../../../../../CommonCode/UtilFiles"
+		},
+		{
+			"path": "../../../DriverLocal"
+		},
+		{
+			"path": "../../../CommonSrv"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolIPC"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"boardssrout.h": "c",
+			"modimplutil.h": "c",
+			"commonsrvtaskheader.h": "c",
+			"ipc_commonsrvheader.h": "c"
+		}
+	}
+}

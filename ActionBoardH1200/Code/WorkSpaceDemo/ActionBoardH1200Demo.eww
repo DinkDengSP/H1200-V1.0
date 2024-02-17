@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspace>
+    <project>
+        <path>$WS_DIR$\..\PorjectCollection\AppDemoBoardID1\ProjectFiles\ActionBoardH1200AppDemoBoardID1.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\..\PorjectCollection\BootLoader\ProjectFiles\ActionBoardH1200BootLoader.ewp</path>
+    </project>
+    <batchBuild />
+</workspace>

@@ -1,0 +1,27 @@
+/*********************************************************************************************** 
+** Author        : DengXiaoJun(邓小俊)
+** Date          : 2023-10-31 08:43:34 +0800
+** Description   : When I Has Time ,I Will Write Description Below:
+** ModifyRecord1 :    
+** ModifyRecord2 :    
+** LastEditors   : DengXiaoJun(邓小俊)
+** LastEditTime  : 2023-10-31 16:48:37 +0800
+************************************************************************************************/ 
+#ifndef __COMMON_SRV_IMPL_BASE_H_
+#define __COMMON_SRV_IMPL_BASE_H_
+#include "DriverHeaderSystem.h"
+#include "SysState.h"
+#include "SysParam.h"
+
+#endif
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,72 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../../../CommonCode/ADT"
+		},
+		{
+			"path": "../../../../../CommonCode/DriverF407"
+		},
+		{
+			"path": "../../../../../CommonCode/HAL_F4"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolCan"
+		},
+		{
+			"path": "../../../../../CommonCode/RTT"
+		},
+		{
+			"path": "../../../../../CommonCode/ThreadX"
+		},
+		{
+			"path": "../../../../../CommonCode/UtilFiles"
+		},
+		{
+			"path": "../../../DriverLocal"
+		},
+		{
+			"path": "../../../../../CommonCode/StepMotorCPLD"
+		},
+		{
+			"path": "../../../CommonSrv"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolIPC"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"modimplutil.h": "c",
+			"mcu_spi3.h": "c",
+			"srvimplbase.h": "c",
+			"srvtaskheader.h": "c",
+			"srvimplbaseflashiap.h": "c",
+			"srvimplsocketcan2.h": "c",
+			"srvimplbasesyslog.h": "c",
+			"mcu_uart6.h": "c",
+			"boardrs485.h": "c",
+			"driverconfigboard.h": "c",
+			"taskconfigsrv.h": "c",
+			"srvimplflashiap.h": "c",
+			"srvimplutil.h": "c",
+			"srvimpltimer.h": "c",
+			"commonsrvtaskheader.h": "c",
+			"srvimplbaseportin.h": "c",
+			"ipc_srvstepmotor1.h": "c",
+			"commonsrvimplbase.h": "c",
+			"mcu_uart1.h": "c",
+			"mcu_spi2.h": "c",
+			"apptaskheader.h": "c",
+			"commonsrvimplheader.h": "c",
+			"sysparam.h": "c",
+			"stepmotorparam.h": "c",
+			"modimplplatereactionconfig.h": "c",
+			"modimplbaseneedlereagent.h": "c",
+			"modimplbaseplatereaction.h": "c",
+			"modimplbase.h": "c"
+		}
+	}
+}

@@ -1,0 +1,16 @@
+Fitter Status : Successful - Thu Jan 25 14:10:47 2024
+Quartus Prime Version : 22.1std.1 Build 917 02/14/2023 SC Lite Edition
+Revision Name : H1200_StepMotorControl_GHRD
+Top-level Entity Name : H1200_StepMotorControl_GHRD
+Family : Cyclone 10 LP
+Device : 10CL080YU484I7G
+Timing Models : Final
+Total logic elements : 39,876 / 81,264 ( 49 % )
+    Total combinational functions : 35,572 / 81,264 ( 44 % )
+    Dedicated logic registers : 16,580 / 81,264 ( 20 % )
+Total registers : 16580
+Total pins : 173 / 290 ( 60 % )
+Total virtual pins : 256
+Total memory bits : 1,048,576 / 2,810,880 ( 37 % )
+Embedded Multiplier 9-bit elements : 112 / 488 ( 23 % )
+Total PLLs : 2 / 4 ( 50 % )

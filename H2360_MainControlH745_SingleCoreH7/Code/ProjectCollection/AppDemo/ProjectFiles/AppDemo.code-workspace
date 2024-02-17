@@ -1,0 +1,72 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../../../CommonCode/ADT"
+		},
+		{
+			"path": "../../../../../CommonCode/DriverH745_M7"
+		},
+		{
+			"path": "../../../../../CommonCode/HAL_H7"
+		},
+		{
+			"path": "../../../../../CommonCode/NetXDUO"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolNet"
+		},
+		{
+			"path": "../../../../../CommonCode/RTT"
+		},
+		{
+			"path": "../../../../../CommonCode/ThreadX"
+		},
+		{
+			"path": "../../../../../CommonCode/UtilFiles"
+		},
+		{
+			"path": "../../../DriverLocal"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolCan"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolIPC"
+		},
+		{
+			"path": "../../../CommonSrv"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolUart"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"coreutil.h": "c",
+			"srvimplstartheart.h": "c",
+			"mcu_chipid.h": "c",
+			"netprotdatatype.h": "c",
+			"netprotutil.h": "c",
+			"netprotport.h": "c",
+			"srvtaskheader.h": "c",
+			"srvimplflashiap.h": "c",
+			"boardextendport.h": "c",
+			"boardtca9555pwr.h": "c",
+			"mcu_iwdg.h": "c",
+			"canprotbase.h": "c",
+			"canprotport.h": "c",
+			"modtaskheader.h": "c",
+			"canmasterutil.h": "c",
+			"usermemmanage.h": "c",
+			"driverconfigsystem.h": "c",
+			"srvimplbaseutil.h": "c",
+			"ipc_modbase.h": "c",
+			"ipc_srvdemo.h": "c",
+			"ipc_modutil.h": "c",
+			"srvimplutil.h": "c"
+		}
+	}
+}

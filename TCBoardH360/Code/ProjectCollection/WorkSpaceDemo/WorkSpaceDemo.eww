@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspace>
+    <project>
+        <path>$WS_DIR$\..\AppDemo\ProjectFiles\TCBoardH360_AppDemo.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\..\Boot\ProjectFiles\TCBoardH360_Boot.ewp</path>
+    </project>
+    <batchBuild />
+</workspace>

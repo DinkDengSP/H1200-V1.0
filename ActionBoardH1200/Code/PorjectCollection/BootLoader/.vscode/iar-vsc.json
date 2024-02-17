@@ -1,0 +1,11 @@
+{
+  "workbench": {
+    "path": "C:\\Program Files\\IAR Systems\\IAR ARM 9.3"
+  },
+  "project": {
+    "path": "${workspaceFolder}\\ProjectFiles\\ActionBoardH1200BootLoader.ewp"
+  },
+  "configs": {
+    "${workspaceFolder}\\ProjectFiles\\ActionBoardH1200BootLoader.ewp": "Main"
+  }
+}

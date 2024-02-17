@@ -1,0 +1,11 @@
+{
+  "project": {
+    "path": "${workspaceFolder}\\ProjectFiles\\MultiRailMainControlApp.ewp"
+  },
+  "configs": {
+    "${workspaceFolder}\\ProjectFiles\\MultiRailMainControlApp.ewp": "Main"
+  },
+  "workbench": {
+    "path": "C:\\Program Files\\IAR Systems\\IAR ARM 9.3"
+  }
+}

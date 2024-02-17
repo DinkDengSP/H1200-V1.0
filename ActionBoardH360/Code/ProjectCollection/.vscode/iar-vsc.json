@@ -1,0 +1,18 @@
+{
+  "workspace": {
+    "path": "${workspaceFolder}\\WorkSpaceActionDemo\\WorkSpaceActionDemo.eww"
+  },
+  "workspaces": {
+    "${workspaceFolder}\\WorkSpaceActionDemo\\WorkSpaceActionDemo.eww": {
+      "configs": {
+        "${workspaceFolder}\\AppDemo\\ProjectFiles\\ActionBoardH360_AppDemo.ewp": "Main"
+      },
+      "selected": {
+        "path": "${workspaceFolder}\\AppDemo\\ProjectFiles\\ActionBoardH360_AppDemo.ewp"
+      }
+    }
+  },
+  "workbench": {
+    "path": "C:\\Program Files\\IAR Systems\\IAR ARM 9.3"
+  }
+}

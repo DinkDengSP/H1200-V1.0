@@ -1,0 +1,68 @@
+Quartus Prime Archive log --	D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/ProjectFiles/H1200_StepMotorControl_GHRD-1.qarlog
+
+Archive:	D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/ProjectFiles/H1200_StepMotorControl_GHRD-1.qar
+Date:		Thu Jan 25 13:21:39 2024
+Quartus Prime		22.1std.1 Build 917 02/14/2023 SC Lite Edition
+
+	=========== Files Selected: ===========
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_PLL_24M/clk_24m_pll_ip.ppf
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_PLL_24M/clk_24m_pll_ip.qip
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_PLL_24M/clk_24m_pll_ip.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_PLL_24M/clk_24m_pll_ip_bb.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_PLL_50M/clk_50m_pll_ip.ppf
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_PLL_50M/clk_50m_pll_ip.qip
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_PLL_50M/clk_50m_pll_ip.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_PLL_50M/clk_50m_pll_ip_bb.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_STEP_MOTOR_RAM/step_motor_table_ram.bsf
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_STEP_MOTOR_RAM/step_motor_table_ram.inc
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_STEP_MOTOR_RAM/step_motor_table_ram.qip
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_STEP_MOTOR_RAM/step_motor_table_ram.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_STEP_MOTOR_RAM/step_motor_table_ram_bb.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int.cmp
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int.qip
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int.sip
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int.spd
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int/dspba_library.vhd
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int/dspba_library_package.vhd
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int/motor_encoder_fp_to_int_0002.vhd
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int_sim/motor_encoder_fp_to_int.vo
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp.cmp
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp.qip
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp.sip
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp.spd
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp/dspba_library.vhd
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp/dspba_library_package.vhd
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp/motor_encoder_int_to_fp_0002.vhd
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp_sim/motor_encoder_int_to_fp.vo
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos.cmp
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos.qip
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos.sip
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos.spd
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos/dspba_library.vhd
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos/dspba_library_package.vhd
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos/motor_encoder_mul_pos_0002.vhd
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos_sim/motor_encoder_mul_pos.vo
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/ProjectFiles/H1200_StepMotorControl_GHRD.qpf
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/ProjectFiles/H1200_StepMotorControl_GHRD.qsf
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/ProjectFiles/H1200_StepMotorControl_GHRD.sdc
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/ProjectFiles/jic_generic.cof
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/H1200_StepMotorControl_GHRD.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/fsmc_comm_interface.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/fsmc_write_cmd_process.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/gpio_port_in.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/gpio_port_out.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/led_breath.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/led_flashing.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/sensor_debounce.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/step_motor_base_logic.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/step_motor_control.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/step_motor_encoder.v
+D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/TCL/h1200_step_motor_ctrl.tcl
+c:/intelfpga_lite/22.1std/quartus/bin64/assignment_defaults.qdf
+	======= Total: 57 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

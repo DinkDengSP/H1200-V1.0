@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"type_traits": "c",
+			"xstddef": "c",
+			"xtr1common": "c",
+			"cstddef": "c",
+			"limits": "c"
+		}
+	}
+}

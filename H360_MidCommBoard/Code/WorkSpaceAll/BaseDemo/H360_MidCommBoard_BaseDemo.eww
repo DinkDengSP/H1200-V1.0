@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspace>
+    <project>
+        <path>$WS_DIR$\..\..\ProjectCollection\AppDemo\ProjectFiles\H360_MidCommBoard_AppDemo.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\..\..\ProjectCollection\BootLoader\ProjectFiles\H360_MidCommBoard_BootLoader.ewp</path>
+    </project>
+    <batchBuild />
+</workspace>

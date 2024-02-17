@@ -1,0 +1,640 @@
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_16_inst|base_logic_state
+Name base_logic_state.BASE_LOGIC_BUSY base_logic_state.BASE_LOGIC_NEXT_STEP base_logic_state.BASE_LOGIC_START base_logic_state.BASE_LOGIC_IDLE 
+base_logic_state.BASE_LOGIC_IDLE 0 0 0 0 
+base_logic_state.BASE_LOGIC_START 0 0 1 1 
+base_logic_state.BASE_LOGIC_NEXT_STEP 0 1 0 1 
+base_logic_state.BASE_LOGIC_BUSY 1 0 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_16_inst|stp_tab_cmd
+Name stp_tab_cmd.CMD_TABLE_READ stp_tab_cmd.CMD_TABLE_WRITE stp_tab_cmd.CMD_TABLE_IDLE 
+stp_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+stp_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+stp_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_16_inst|spd_tab_cmd
+Name spd_tab_cmd.CMD_TABLE_READ spd_tab_cmd.CMD_TABLE_WRITE spd_tab_cmd.CMD_TABLE_IDLE 
+spd_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+spd_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+spd_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_16_inst|sensor_debounce:sensor_debounce_util_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_16_inst|sensor_debounce:sensor_debounce_em_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_16_inst|sensor_debounce:sensor_debounce_reset_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_16_inst|step_motor_base_logic:step_motor_base_logic_inst|module_state
+Name module_state.MODULE_STATE_HIGH module_state.MODULE_STATE_LOW module_state.MODULE_STATE_IDLE 
+module_state.MODULE_STATE_IDLE 0 0 0 
+module_state.MODULE_STATE_LOW 0 1 1 
+module_state.MODULE_STATE_HIGH 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_15_inst|base_logic_state
+Name base_logic_state.BASE_LOGIC_BUSY base_logic_state.BASE_LOGIC_NEXT_STEP base_logic_state.BASE_LOGIC_START base_logic_state.BASE_LOGIC_IDLE 
+base_logic_state.BASE_LOGIC_IDLE 0 0 0 0 
+base_logic_state.BASE_LOGIC_START 0 0 1 1 
+base_logic_state.BASE_LOGIC_NEXT_STEP 0 1 0 1 
+base_logic_state.BASE_LOGIC_BUSY 1 0 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_15_inst|stp_tab_cmd
+Name stp_tab_cmd.CMD_TABLE_READ stp_tab_cmd.CMD_TABLE_WRITE stp_tab_cmd.CMD_TABLE_IDLE 
+stp_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+stp_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+stp_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_15_inst|spd_tab_cmd
+Name spd_tab_cmd.CMD_TABLE_READ spd_tab_cmd.CMD_TABLE_WRITE spd_tab_cmd.CMD_TABLE_IDLE 
+spd_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+spd_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+spd_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_15_inst|sensor_debounce:sensor_debounce_util_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_15_inst|sensor_debounce:sensor_debounce_em_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_15_inst|sensor_debounce:sensor_debounce_reset_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_15_inst|step_motor_base_logic:step_motor_base_logic_inst|module_state
+Name module_state.MODULE_STATE_HIGH module_state.MODULE_STATE_LOW module_state.MODULE_STATE_IDLE 
+module_state.MODULE_STATE_IDLE 0 0 0 
+module_state.MODULE_STATE_LOW 0 1 1 
+module_state.MODULE_STATE_HIGH 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_14_inst|base_logic_state
+Name base_logic_state.BASE_LOGIC_BUSY base_logic_state.BASE_LOGIC_NEXT_STEP base_logic_state.BASE_LOGIC_START base_logic_state.BASE_LOGIC_IDLE 
+base_logic_state.BASE_LOGIC_IDLE 0 0 0 0 
+base_logic_state.BASE_LOGIC_START 0 0 1 1 
+base_logic_state.BASE_LOGIC_NEXT_STEP 0 1 0 1 
+base_logic_state.BASE_LOGIC_BUSY 1 0 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_14_inst|stp_tab_cmd
+Name stp_tab_cmd.CMD_TABLE_READ stp_tab_cmd.CMD_TABLE_WRITE stp_tab_cmd.CMD_TABLE_IDLE 
+stp_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+stp_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+stp_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_14_inst|spd_tab_cmd
+Name spd_tab_cmd.CMD_TABLE_READ spd_tab_cmd.CMD_TABLE_WRITE spd_tab_cmd.CMD_TABLE_IDLE 
+spd_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+spd_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+spd_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_14_inst|sensor_debounce:sensor_debounce_util_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_14_inst|sensor_debounce:sensor_debounce_em_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_14_inst|sensor_debounce:sensor_debounce_reset_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_14_inst|step_motor_base_logic:step_motor_base_logic_inst|module_state
+Name module_state.MODULE_STATE_HIGH module_state.MODULE_STATE_LOW module_state.MODULE_STATE_IDLE 
+module_state.MODULE_STATE_IDLE 0 0 0 
+module_state.MODULE_STATE_LOW 0 1 1 
+module_state.MODULE_STATE_HIGH 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_13_inst|base_logic_state
+Name base_logic_state.BASE_LOGIC_BUSY base_logic_state.BASE_LOGIC_NEXT_STEP base_logic_state.BASE_LOGIC_START base_logic_state.BASE_LOGIC_IDLE 
+base_logic_state.BASE_LOGIC_IDLE 0 0 0 0 
+base_logic_state.BASE_LOGIC_START 0 0 1 1 
+base_logic_state.BASE_LOGIC_NEXT_STEP 0 1 0 1 
+base_logic_state.BASE_LOGIC_BUSY 1 0 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_13_inst|stp_tab_cmd
+Name stp_tab_cmd.CMD_TABLE_READ stp_tab_cmd.CMD_TABLE_WRITE stp_tab_cmd.CMD_TABLE_IDLE 
+stp_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+stp_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+stp_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_13_inst|spd_tab_cmd
+Name spd_tab_cmd.CMD_TABLE_READ spd_tab_cmd.CMD_TABLE_WRITE spd_tab_cmd.CMD_TABLE_IDLE 
+spd_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+spd_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+spd_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_13_inst|sensor_debounce:sensor_debounce_util_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_13_inst|sensor_debounce:sensor_debounce_em_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_13_inst|sensor_debounce:sensor_debounce_reset_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_13_inst|step_motor_base_logic:step_motor_base_logic_inst|module_state
+Name module_state.MODULE_STATE_HIGH module_state.MODULE_STATE_LOW module_state.MODULE_STATE_IDLE 
+module_state.MODULE_STATE_IDLE 0 0 0 
+module_state.MODULE_STATE_LOW 0 1 1 
+module_state.MODULE_STATE_HIGH 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_12_inst|base_logic_state
+Name base_logic_state.BASE_LOGIC_BUSY base_logic_state.BASE_LOGIC_NEXT_STEP base_logic_state.BASE_LOGIC_START base_logic_state.BASE_LOGIC_IDLE 
+base_logic_state.BASE_LOGIC_IDLE 0 0 0 0 
+base_logic_state.BASE_LOGIC_START 0 0 1 1 
+base_logic_state.BASE_LOGIC_NEXT_STEP 0 1 0 1 
+base_logic_state.BASE_LOGIC_BUSY 1 0 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_12_inst|stp_tab_cmd
+Name stp_tab_cmd.CMD_TABLE_READ stp_tab_cmd.CMD_TABLE_WRITE stp_tab_cmd.CMD_TABLE_IDLE 
+stp_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+stp_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+stp_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_12_inst|spd_tab_cmd
+Name spd_tab_cmd.CMD_TABLE_READ spd_tab_cmd.CMD_TABLE_WRITE spd_tab_cmd.CMD_TABLE_IDLE 
+spd_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+spd_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+spd_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_12_inst|sensor_debounce:sensor_debounce_util_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_12_inst|sensor_debounce:sensor_debounce_em_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_12_inst|sensor_debounce:sensor_debounce_reset_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_12_inst|step_motor_base_logic:step_motor_base_logic_inst|module_state
+Name module_state.MODULE_STATE_HIGH module_state.MODULE_STATE_LOW module_state.MODULE_STATE_IDLE 
+module_state.MODULE_STATE_IDLE 0 0 0 
+module_state.MODULE_STATE_LOW 0 1 1 
+module_state.MODULE_STATE_HIGH 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_11_inst|base_logic_state
+Name base_logic_state.BASE_LOGIC_BUSY base_logic_state.BASE_LOGIC_NEXT_STEP base_logic_state.BASE_LOGIC_START base_logic_state.BASE_LOGIC_IDLE 
+base_logic_state.BASE_LOGIC_IDLE 0 0 0 0 
+base_logic_state.BASE_LOGIC_START 0 0 1 1 
+base_logic_state.BASE_LOGIC_NEXT_STEP 0 1 0 1 
+base_logic_state.BASE_LOGIC_BUSY 1 0 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_11_inst|stp_tab_cmd
+Name stp_tab_cmd.CMD_TABLE_READ stp_tab_cmd.CMD_TABLE_WRITE stp_tab_cmd.CMD_TABLE_IDLE 
+stp_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+stp_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+stp_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_11_inst|spd_tab_cmd
+Name spd_tab_cmd.CMD_TABLE_READ spd_tab_cmd.CMD_TABLE_WRITE spd_tab_cmd.CMD_TABLE_IDLE 
+spd_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+spd_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+spd_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_11_inst|sensor_debounce:sensor_debounce_util_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_11_inst|sensor_debounce:sensor_debounce_em_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_11_inst|sensor_debounce:sensor_debounce_reset_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_11_inst|step_motor_base_logic:step_motor_base_logic_inst|module_state
+Name module_state.MODULE_STATE_HIGH module_state.MODULE_STATE_LOW module_state.MODULE_STATE_IDLE 
+module_state.MODULE_STATE_IDLE 0 0 0 
+module_state.MODULE_STATE_LOW 0 1 1 
+module_state.MODULE_STATE_HIGH 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_10_inst|base_logic_state
+Name base_logic_state.BASE_LOGIC_BUSY base_logic_state.BASE_LOGIC_NEXT_STEP base_logic_state.BASE_LOGIC_START base_logic_state.BASE_LOGIC_IDLE 
+base_logic_state.BASE_LOGIC_IDLE 0 0 0 0 
+base_logic_state.BASE_LOGIC_START 0 0 1 1 
+base_logic_state.BASE_LOGIC_NEXT_STEP 0 1 0 1 
+base_logic_state.BASE_LOGIC_BUSY 1 0 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_10_inst|stp_tab_cmd
+Name stp_tab_cmd.CMD_TABLE_READ stp_tab_cmd.CMD_TABLE_WRITE stp_tab_cmd.CMD_TABLE_IDLE 
+stp_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+stp_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+stp_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_10_inst|spd_tab_cmd
+Name spd_tab_cmd.CMD_TABLE_READ spd_tab_cmd.CMD_TABLE_WRITE spd_tab_cmd.CMD_TABLE_IDLE 
+spd_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+spd_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+spd_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_10_inst|sensor_debounce:sensor_debounce_util_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_10_inst|sensor_debounce:sensor_debounce_em_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_10_inst|sensor_debounce:sensor_debounce_reset_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_10_inst|step_motor_base_logic:step_motor_base_logic_inst|module_state
+Name module_state.MODULE_STATE_HIGH module_state.MODULE_STATE_LOW module_state.MODULE_STATE_IDLE 
+module_state.MODULE_STATE_IDLE 0 0 0 
+module_state.MODULE_STATE_LOW 0 1 1 
+module_state.MODULE_STATE_HIGH 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_9_inst|base_logic_state
+Name base_logic_state.BASE_LOGIC_BUSY base_logic_state.BASE_LOGIC_NEXT_STEP base_logic_state.BASE_LOGIC_START base_logic_state.BASE_LOGIC_IDLE 
+base_logic_state.BASE_LOGIC_IDLE 0 0 0 0 
+base_logic_state.BASE_LOGIC_START 0 0 1 1 
+base_logic_state.BASE_LOGIC_NEXT_STEP 0 1 0 1 
+base_logic_state.BASE_LOGIC_BUSY 1 0 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_9_inst|stp_tab_cmd
+Name stp_tab_cmd.CMD_TABLE_READ stp_tab_cmd.CMD_TABLE_WRITE stp_tab_cmd.CMD_TABLE_IDLE 
+stp_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+stp_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+stp_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_9_inst|spd_tab_cmd
+Name spd_tab_cmd.CMD_TABLE_READ spd_tab_cmd.CMD_TABLE_WRITE spd_tab_cmd.CMD_TABLE_IDLE 
+spd_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+spd_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+spd_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_9_inst|sensor_debounce:sensor_debounce_util_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_9_inst|sensor_debounce:sensor_debounce_em_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_9_inst|sensor_debounce:sensor_debounce_reset_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_9_inst|step_motor_base_logic:step_motor_base_logic_inst|module_state
+Name module_state.MODULE_STATE_HIGH module_state.MODULE_STATE_LOW module_state.MODULE_STATE_IDLE 
+module_state.MODULE_STATE_IDLE 0 0 0 
+module_state.MODULE_STATE_LOW 0 1 1 
+module_state.MODULE_STATE_HIGH 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_8_inst|base_logic_state
+Name base_logic_state.BASE_LOGIC_BUSY base_logic_state.BASE_LOGIC_NEXT_STEP base_logic_state.BASE_LOGIC_START base_logic_state.BASE_LOGIC_IDLE 
+base_logic_state.BASE_LOGIC_IDLE 0 0 0 0 
+base_logic_state.BASE_LOGIC_START 0 0 1 1 
+base_logic_state.BASE_LOGIC_NEXT_STEP 0 1 0 1 
+base_logic_state.BASE_LOGIC_BUSY 1 0 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_8_inst|stp_tab_cmd
+Name stp_tab_cmd.CMD_TABLE_READ stp_tab_cmd.CMD_TABLE_WRITE stp_tab_cmd.CMD_TABLE_IDLE 
+stp_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+stp_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+stp_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_8_inst|spd_tab_cmd
+Name spd_tab_cmd.CMD_TABLE_READ spd_tab_cmd.CMD_TABLE_WRITE spd_tab_cmd.CMD_TABLE_IDLE 
+spd_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+spd_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+spd_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_8_inst|sensor_debounce:sensor_debounce_util_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_8_inst|sensor_debounce:sensor_debounce_em_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_8_inst|sensor_debounce:sensor_debounce_reset_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_8_inst|step_motor_base_logic:step_motor_base_logic_inst|module_state
+Name module_state.MODULE_STATE_HIGH module_state.MODULE_STATE_LOW module_state.MODULE_STATE_IDLE 
+module_state.MODULE_STATE_IDLE 0 0 0 
+module_state.MODULE_STATE_LOW 0 1 1 
+module_state.MODULE_STATE_HIGH 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_7_inst|base_logic_state
+Name base_logic_state.BASE_LOGIC_BUSY base_logic_state.BASE_LOGIC_NEXT_STEP base_logic_state.BASE_LOGIC_START base_logic_state.BASE_LOGIC_IDLE 
+base_logic_state.BASE_LOGIC_IDLE 0 0 0 0 
+base_logic_state.BASE_LOGIC_START 0 0 1 1 
+base_logic_state.BASE_LOGIC_NEXT_STEP 0 1 0 1 
+base_logic_state.BASE_LOGIC_BUSY 1 0 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_7_inst|stp_tab_cmd
+Name stp_tab_cmd.CMD_TABLE_READ stp_tab_cmd.CMD_TABLE_WRITE stp_tab_cmd.CMD_TABLE_IDLE 
+stp_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+stp_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+stp_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_7_inst|spd_tab_cmd
+Name spd_tab_cmd.CMD_TABLE_READ spd_tab_cmd.CMD_TABLE_WRITE spd_tab_cmd.CMD_TABLE_IDLE 
+spd_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+spd_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+spd_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_7_inst|sensor_debounce:sensor_debounce_util_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_7_inst|sensor_debounce:sensor_debounce_em_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_7_inst|sensor_debounce:sensor_debounce_reset_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_7_inst|step_motor_base_logic:step_motor_base_logic_inst|module_state
+Name module_state.MODULE_STATE_HIGH module_state.MODULE_STATE_LOW module_state.MODULE_STATE_IDLE 
+module_state.MODULE_STATE_IDLE 0 0 0 
+module_state.MODULE_STATE_LOW 0 1 1 
+module_state.MODULE_STATE_HIGH 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_6_inst|base_logic_state
+Name base_logic_state.BASE_LOGIC_BUSY base_logic_state.BASE_LOGIC_NEXT_STEP base_logic_state.BASE_LOGIC_START base_logic_state.BASE_LOGIC_IDLE 
+base_logic_state.BASE_LOGIC_IDLE 0 0 0 0 
+base_logic_state.BASE_LOGIC_START 0 0 1 1 
+base_logic_state.BASE_LOGIC_NEXT_STEP 0 1 0 1 
+base_logic_state.BASE_LOGIC_BUSY 1 0 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_6_inst|stp_tab_cmd
+Name stp_tab_cmd.CMD_TABLE_READ stp_tab_cmd.CMD_TABLE_WRITE stp_tab_cmd.CMD_TABLE_IDLE 
+stp_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+stp_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+stp_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_6_inst|spd_tab_cmd
+Name spd_tab_cmd.CMD_TABLE_READ spd_tab_cmd.CMD_TABLE_WRITE spd_tab_cmd.CMD_TABLE_IDLE 
+spd_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+spd_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+spd_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_6_inst|sensor_debounce:sensor_debounce_util_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_6_inst|sensor_debounce:sensor_debounce_em_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_6_inst|sensor_debounce:sensor_debounce_reset_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_6_inst|step_motor_base_logic:step_motor_base_logic_inst|module_state
+Name module_state.MODULE_STATE_HIGH module_state.MODULE_STATE_LOW module_state.MODULE_STATE_IDLE 
+module_state.MODULE_STATE_IDLE 0 0 0 
+module_state.MODULE_STATE_LOW 0 1 1 
+module_state.MODULE_STATE_HIGH 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_5_inst|base_logic_state
+Name base_logic_state.BASE_LOGIC_BUSY base_logic_state.BASE_LOGIC_NEXT_STEP base_logic_state.BASE_LOGIC_START base_logic_state.BASE_LOGIC_IDLE 
+base_logic_state.BASE_LOGIC_IDLE 0 0 0 0 
+base_logic_state.BASE_LOGIC_START 0 0 1 1 
+base_logic_state.BASE_LOGIC_NEXT_STEP 0 1 0 1 
+base_logic_state.BASE_LOGIC_BUSY 1 0 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_5_inst|stp_tab_cmd
+Name stp_tab_cmd.CMD_TABLE_READ stp_tab_cmd.CMD_TABLE_WRITE stp_tab_cmd.CMD_TABLE_IDLE 
+stp_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+stp_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+stp_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_5_inst|spd_tab_cmd
+Name spd_tab_cmd.CMD_TABLE_READ spd_tab_cmd.CMD_TABLE_WRITE spd_tab_cmd.CMD_TABLE_IDLE 
+spd_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+spd_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+spd_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_5_inst|sensor_debounce:sensor_debounce_util_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_5_inst|sensor_debounce:sensor_debounce_em_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_5_inst|sensor_debounce:sensor_debounce_reset_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_5_inst|step_motor_base_logic:step_motor_base_logic_inst|module_state
+Name module_state.MODULE_STATE_HIGH module_state.MODULE_STATE_LOW module_state.MODULE_STATE_IDLE 
+module_state.MODULE_STATE_IDLE 0 0 0 
+module_state.MODULE_STATE_LOW 0 1 1 
+module_state.MODULE_STATE_HIGH 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_4_inst|base_logic_state
+Name base_logic_state.BASE_LOGIC_BUSY base_logic_state.BASE_LOGIC_NEXT_STEP base_logic_state.BASE_LOGIC_START base_logic_state.BASE_LOGIC_IDLE 
+base_logic_state.BASE_LOGIC_IDLE 0 0 0 0 
+base_logic_state.BASE_LOGIC_START 0 0 1 1 
+base_logic_state.BASE_LOGIC_NEXT_STEP 0 1 0 1 
+base_logic_state.BASE_LOGIC_BUSY 1 0 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_4_inst|stp_tab_cmd
+Name stp_tab_cmd.CMD_TABLE_READ stp_tab_cmd.CMD_TABLE_WRITE stp_tab_cmd.CMD_TABLE_IDLE 
+stp_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+stp_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+stp_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_4_inst|spd_tab_cmd
+Name spd_tab_cmd.CMD_TABLE_READ spd_tab_cmd.CMD_TABLE_WRITE spd_tab_cmd.CMD_TABLE_IDLE 
+spd_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+spd_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+spd_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_4_inst|sensor_debounce:sensor_debounce_util_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_4_inst|sensor_debounce:sensor_debounce_em_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_4_inst|sensor_debounce:sensor_debounce_reset_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_4_inst|step_motor_base_logic:step_motor_base_logic_inst|module_state
+Name module_state.MODULE_STATE_HIGH module_state.MODULE_STATE_LOW module_state.MODULE_STATE_IDLE 
+module_state.MODULE_STATE_IDLE 0 0 0 
+module_state.MODULE_STATE_LOW 0 1 1 
+module_state.MODULE_STATE_HIGH 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_3_inst|base_logic_state
+Name base_logic_state.BASE_LOGIC_BUSY base_logic_state.BASE_LOGIC_NEXT_STEP base_logic_state.BASE_LOGIC_START base_logic_state.BASE_LOGIC_IDLE 
+base_logic_state.BASE_LOGIC_IDLE 0 0 0 0 
+base_logic_state.BASE_LOGIC_START 0 0 1 1 
+base_logic_state.BASE_LOGIC_NEXT_STEP 0 1 0 1 
+base_logic_state.BASE_LOGIC_BUSY 1 0 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_3_inst|stp_tab_cmd
+Name stp_tab_cmd.CMD_TABLE_READ stp_tab_cmd.CMD_TABLE_WRITE stp_tab_cmd.CMD_TABLE_IDLE 
+stp_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+stp_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+stp_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_3_inst|spd_tab_cmd
+Name spd_tab_cmd.CMD_TABLE_READ spd_tab_cmd.CMD_TABLE_WRITE spd_tab_cmd.CMD_TABLE_IDLE 
+spd_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+spd_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+spd_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_3_inst|sensor_debounce:sensor_debounce_util_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_3_inst|sensor_debounce:sensor_debounce_em_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_3_inst|sensor_debounce:sensor_debounce_reset_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_3_inst|step_motor_base_logic:step_motor_base_logic_inst|module_state
+Name module_state.MODULE_STATE_HIGH module_state.MODULE_STATE_LOW module_state.MODULE_STATE_IDLE 
+module_state.MODULE_STATE_IDLE 0 0 0 
+module_state.MODULE_STATE_LOW 0 1 1 
+module_state.MODULE_STATE_HIGH 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_2_inst|base_logic_state
+Name base_logic_state.BASE_LOGIC_BUSY base_logic_state.BASE_LOGIC_NEXT_STEP base_logic_state.BASE_LOGIC_START base_logic_state.BASE_LOGIC_IDLE 
+base_logic_state.BASE_LOGIC_IDLE 0 0 0 0 
+base_logic_state.BASE_LOGIC_START 0 0 1 1 
+base_logic_state.BASE_LOGIC_NEXT_STEP 0 1 0 1 
+base_logic_state.BASE_LOGIC_BUSY 1 0 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_2_inst|stp_tab_cmd
+Name stp_tab_cmd.CMD_TABLE_READ stp_tab_cmd.CMD_TABLE_WRITE stp_tab_cmd.CMD_TABLE_IDLE 
+stp_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+stp_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+stp_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_2_inst|spd_tab_cmd
+Name spd_tab_cmd.CMD_TABLE_READ spd_tab_cmd.CMD_TABLE_WRITE spd_tab_cmd.CMD_TABLE_IDLE 
+spd_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+spd_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+spd_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_2_inst|sensor_debounce:sensor_debounce_util_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_2_inst|sensor_debounce:sensor_debounce_em_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_2_inst|sensor_debounce:sensor_debounce_reset_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_2_inst|step_motor_base_logic:step_motor_base_logic_inst|module_state
+Name module_state.MODULE_STATE_HIGH module_state.MODULE_STATE_LOW module_state.MODULE_STATE_IDLE 
+module_state.MODULE_STATE_IDLE 0 0 0 
+module_state.MODULE_STATE_LOW 0 1 1 
+module_state.MODULE_STATE_HIGH 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_1_inst|base_logic_state
+Name base_logic_state.BASE_LOGIC_BUSY base_logic_state.BASE_LOGIC_NEXT_STEP base_logic_state.BASE_LOGIC_START base_logic_state.BASE_LOGIC_IDLE 
+base_logic_state.BASE_LOGIC_IDLE 0 0 0 0 
+base_logic_state.BASE_LOGIC_START 0 0 1 1 
+base_logic_state.BASE_LOGIC_NEXT_STEP 0 1 0 1 
+base_logic_state.BASE_LOGIC_BUSY 1 0 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_1_inst|stp_tab_cmd
+Name stp_tab_cmd.CMD_TABLE_READ stp_tab_cmd.CMD_TABLE_WRITE stp_tab_cmd.CMD_TABLE_IDLE 
+stp_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+stp_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+stp_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_1_inst|spd_tab_cmd
+Name spd_tab_cmd.CMD_TABLE_READ spd_tab_cmd.CMD_TABLE_WRITE spd_tab_cmd.CMD_TABLE_IDLE 
+spd_tab_cmd.CMD_TABLE_IDLE 0 0 0 
+spd_tab_cmd.CMD_TABLE_WRITE 0 1 1 
+spd_tab_cmd.CMD_TABLE_READ 1 0 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_1_inst|sensor_debounce:sensor_debounce_util_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_1_inst|sensor_debounce:sensor_debounce_em_stop_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_1_inst|sensor_debounce:sensor_debounce_reset_inst|sensor_state
+Name sensor_state.SENSOR_STATE_WAIT 
+sensor_state.SENSOR_STATE_IDLE 0 
+sensor_state.SENSOR_STATE_WAIT 1 
+
+State Machine - |H1200_StepMotorControl_GHRD|step_motor_control:step_motor_control_1_inst|step_motor_base_logic:step_motor_base_logic_inst|module_state
+Name module_state.MODULE_STATE_HIGH module_state.MODULE_STATE_LOW module_state.MODULE_STATE_IDLE 
+module_state.MODULE_STATE_IDLE 0 0 0 
+module_state.MODULE_STATE_LOW 0 1 1 
+module_state.MODULE_STATE_HIGH 1 0 1 

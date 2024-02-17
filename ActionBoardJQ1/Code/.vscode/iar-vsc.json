@@ -1,0 +1,18 @@
+{
+  "workspace": {
+    "path": "${workspaceFolder}\\ProjectCollection\\ActBoardSlaveJQ1.eww"
+  },
+  "workspaces": {
+    "${workspaceFolder}\\ProjectCollection\\ActBoardSlaveJQ1.eww": {
+      "configs": {
+        "${workspaceFolder}\\ProjectCollection\\AppDemo\\ProjectFiles\\ActBoardSlaveJQ1_AppDemo.ewp": "Main"
+      },
+      "selected": {
+        "path": "${workspaceFolder}\\ProjectCollection\\AppDemo\\ProjectFiles\\ActBoardSlaveJQ1_AppDemo.ewp"
+      }
+    }
+  },
+  "workbench": {
+    "path": "C:\\Program Files\\IAR Systems\\IAR ARM 9.3"
+  }
+}

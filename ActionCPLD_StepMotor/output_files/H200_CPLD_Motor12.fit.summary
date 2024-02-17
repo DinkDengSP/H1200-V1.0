@@ -1,0 +1,11 @@
+Fitter Status : Successful - Fri Oct 27 16:00:23 2023
+Quartus Prime Version : 22.1std.1 Build 917 02/14/2023 SC Lite Edition
+Revision Name : H200_CPLD_Motor12
+Top-level Entity Name : H200_CPLD_Motor12
+Family : MAX II
+Device : EPM1270T144C5
+Timing Models : Final
+Total logic elements : 1,125 / 1,270 ( 89 % )
+Total pins : 112 / 116 ( 97 % )
+Total virtual pins : 0
+UFM blocks : 0 / 1 ( 0 % )

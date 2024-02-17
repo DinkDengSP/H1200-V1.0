@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="motor_encoder_mul_pos_sim/motor_encoder_mul_pos.vo"
+   type="VERILOG" />
+ <topLevel name="motor_encoder_mul_pos" />
+ <deviceFamily name="cyclone10lp" />
+</simPackage>

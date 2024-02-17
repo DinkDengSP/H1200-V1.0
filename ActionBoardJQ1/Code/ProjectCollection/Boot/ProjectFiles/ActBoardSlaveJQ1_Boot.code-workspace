@@ -1,0 +1,48 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../DriverLocal"
+		},
+		{
+			"path": "../../../../../CommonCode/ADT"
+		},
+		{
+			"path": "../../../../../CommonCode/DriverF407"
+		},
+		{
+			"path": "../../../../../CommonCode/HAL_F4"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolCan"
+		},
+		{
+			"path": "../../../../../CommonCode/RTT"
+		},
+		{
+			"path": "../../../../../CommonCode/ThreadX"
+		},
+		{
+			"path": "../../../../../CommonCode/UtilFiles"
+		},
+		{
+			"path": "../../../../../CommonCode/StepMotorF4"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"driverconfigtimer.h": "c",
+			"intpriority.h": "c",
+			"boardrs232.h": "c",
+			"protocolcanport.h": "c",
+			"protocolcanbase.h": "c",
+			"apptaskheader.h": "c",
+			"protocolcanmacro.h": "c",
+			"stdlib.h": "c",
+			"stdio.h": "c",
+			"srvimplsocketcan1.h": "c"
+		}
+	}
+}

@@ -1,0 +1,12 @@
+{
+  "project": {
+    "path": "${workspaceFolder}\\ProjectFiles\\H360_MidCommBoard_AppDemo.ewp"
+  },
+  "workbench": {
+    "path": "C:\\Program Files\\IAR Systems\\IAR ARM 9.3"
+  },
+  "configs": {
+    "${workspaceFolder}\\ProjectFiles\\H360_MidCommBoard_BootLoader.ewp": "Main",
+    "${workspaceFolder}\\ProjectFiles\\H360_MidCommBoard_AppDemo.ewp": "Main"
+  }
+}

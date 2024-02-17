@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="motor_encoder_fp_to_int_sim/motor_encoder_fp_to_int.vo"
+   type="VERILOG" />
+ <topLevel name="motor_encoder_fp_to_int" />
+ <deviceFamily name="cyclone10lp" />
+</simPackage>

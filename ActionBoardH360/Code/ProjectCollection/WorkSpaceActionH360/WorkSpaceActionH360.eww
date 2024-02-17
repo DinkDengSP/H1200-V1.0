@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspace>
+    <project>
+        <path>$WS_DIR$\..\Boot\ProjectFiles\ActionBoardH360_Boot.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\..\H360_NetActionBoard1\ProjectFiles\H360_NetActionBoard1.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\..\H360_NetActionBoard2\ProjectFiles\H360_NetActionBoard2.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\..\H360_NetActionBoard3\ProjectFiles\H360_NetActionBoard3.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\..\H360_NetActionBoard4\ProjectFiles\H360_NetActionBoard4.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\..\H360_NetActionBoard5\ProjectFiles\H360_NetActionBoard5.ewp</path>
+    </project>
+    <batchBuild />
+</workspace>

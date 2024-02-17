@@ -1,0 +1,12 @@
+{
+  "workbench": {
+    "path": "C:\\Program Files\\IAR Systems\\IAR ARM 9.3"
+  },
+  "project": {
+    "path": "${workspaceFolder}\\ProjectFiles\\ActionBoardH360_AppDemo.ewp"
+  },
+  "configs": {
+    "${workspaceFolder}\\ProjectFiles\\ActionBoardCepheidMotion_AppDemo.ewp": "Main",
+    "${workspaceFolder}\\ProjectFiles\\ActionBoardH360_AppDemo.ewp": "Main"
+  }
+}

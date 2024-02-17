@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at H200_CPLD_Motor12.v(457): always construct contains both blocking and non-blocking assignments File: D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionCPLD_StepMotor/H200_CPLD_Motor12.v Line: 457

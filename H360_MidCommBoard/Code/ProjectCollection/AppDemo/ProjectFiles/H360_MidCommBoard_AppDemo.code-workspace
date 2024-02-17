@@ -1,0 +1,88 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../DriverLocal"
+		},
+		{
+			"path": "../../../../../CommonCode/ADT"
+		},
+		{
+			"path": "../../../../../CommonCode/DriverH743"
+		},
+		{
+			"path": "../../../../../CommonCode/FileX"
+		},
+		{
+			"path": "../../../../../CommonCode/HAL_H7"
+		},
+		{
+			"path": "../../../../../CommonCode/NetXDUO"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolNet"
+		},
+		{
+			"path": "../../../../../CommonCode/RTT"
+		},
+		{
+			"path": "../../../../../CommonCode/ThreadX"
+		},
+		{
+			"path": "../../../../../CommonCode/UtilFiles"
+		},
+		{
+			"path": "../SystemUtil"
+		},
+		{
+			"path": "../../../CommonSrv"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolIPC"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolCan"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolUart"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"ModImplBaseDEMO.C": "cpp",
+			"driverconfigboard.h": "c",
+			"boardrs1.h": "c",
+			"iosfwd": "c",
+			"srvtaskheader.h": "c",
+			"srvimplsyslog.h": "c",
+			"modimplbase.h": "c",
+			"driverconfigcore.h": "c",
+			"nx_user.h": "c",
+			"ipc_srvsyslog.h": "c",
+			"srvimplflashiap.h": "c",
+			"commonsrvtaskheader.h": "c",
+			"modimplbasedemo.h": "c",
+			"socketnetutilw5500.h": "c",
+			"srvimplsocketnet5500.h": "c",
+			"commonsrvimplbase.h": "c",
+			"srvimplforwardsocketuart.h": "c",
+			"srvimplbaseportin.h": "c",
+			"tx_mutex.h": "c",
+			"ipc_srvdemo.h": "c",
+			"ipc_srvtimer.h": "c",
+			"modtaskheader.h": "c"
+		},
+		"files.exclude": {
+			"../../../../../CommonCode/ProtocolCan/MasterFPGA"      :true,
+			"../../../../../CommonCode/ProtocolCan/RailMulti"      	:true,
+			"../../../../../CommonCode/ProtocolCan/H360"      		:true,
+		},
+		"search.exclude": {
+			"../../../../../CommonCode/ProtocolCan/MasterFPGA"      :true,
+			"../../../../../CommonCode/ProtocolCan/RailMulti"      	:true,
+			"../../../../../CommonCode/ProtocolCan/H360"      		:true,
+		},
+	}
+}

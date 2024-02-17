@@ -1,0 +1,169 @@
+Archive Project report for H1200_StepMotorControl_GHRD
+Thu Jan 25 13:21:39 2024
+Quartus Prime Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Archive Project Summary
+  3. Archive Project Messages
+  4. Files Archived
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2023  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++----------------------------------------------------------------+
+; Archive Project Summary                                        ;
++------------------------+---------------------------------------+
+; Archive Project Status ; Successful - Thu Jan 25 13:21:39 2024 ;
+; Revision Name          ; H1200_StepMotorControl_GHRD           ;
+; Top-level Entity Name  ; H1200_StepMotorControl_GHRD           ;
+; Family                 ; Cyclone 10 LP                         ;
++------------------------+---------------------------------------+
+
+
++--------------------------+
+; Archive Project Messages ;
++--------------------------+
+Info: File Set 'Source control' contains:
+    Info: Project source and settings files
+    Info: Automatically detected source files
+Warning: Hierarchical Platform Designer systems and custom IP components(_hw.tcl and associated files) are not archived by the Quartus Archiver
+Info: Archive will store files relative to the closest common parent directory
+Info (13213): Using common directory D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/
+Info: ----------------------------------------------------------
+Info: ----------------------------------------------------------
+Info: Generated archive 'D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/ProjectFiles/H1200_StepMotorControl_GHRD-1.qar'
+Info: ----------------------------------------------------------
+Info: ----------------------------------------------------------
+Info: Generated report 'H1200_StepMotorControl_GHRD.archive.rpt'
+Info (23030): Evaluation of Tcl script c:/intelfpga_lite/22.1std/quartus/common/tcl/apps/qpm/qar.tcl was successful
+Info: Quartus Prime Shell was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 4919 megabytes
+    Info: Processing ended: Thu Jan 25 13:21:39 2024
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:00
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Files Archived                                                                                                                                                                                 ;
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; File Name                                                                                                                                                                                      ;
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; ../IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int.cmp                                                                                                                                   ;
+; ../IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int.qip                                                                                                                                   ;
+; ../IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int.sip                                                                                                                                   ;
+; ../IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int.spd                                                                                                                                   ;
+; ../IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int.v                                                                                                                                     ;
+; ../IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int/dspba_library.vhd                                                                                                                     ;
+; ../IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int/dspba_library_package.vhd                                                                                                             ;
+; ../IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int/motor_encoder_fp_to_int_0002.vhd                                                                                                      ;
+; ../IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int_sim/motor_encoder_fp_to_int.vo                                                                                                        ;
+; ../IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp.cmp                                                                                                                                   ;
+; ../IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp.qip                                                                                                                                   ;
+; ../IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp.sip                                                                                                                                   ;
+; ../IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp.spd                                                                                                                                   ;
+; ../IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp.v                                                                                                                                     ;
+; ../IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp/dspba_library.vhd                                                                                                                     ;
+; ../IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp/dspba_library_package.vhd                                                                                                             ;
+; ../IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp/motor_encoder_int_to_fp_0002.vhd                                                                                                      ;
+; ../IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp_sim/motor_encoder_int_to_fp.vo                                                                                                        ;
+; ../IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos.cmp                                                                                                                                       ;
+; ../IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos.qip                                                                                                                                       ;
+; ../IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos.sip                                                                                                                                       ;
+; ../IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos.spd                                                                                                                                       ;
+; ../IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos.v                                                                                                                                         ;
+; ../IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos/dspba_library.vhd                                                                                                                         ;
+; ../IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos/dspba_library_package.vhd                                                                                                                 ;
+; ../IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos/motor_encoder_mul_pos_0002.vhd                                                                                                            ;
+; ../IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos_sim/motor_encoder_mul_pos.vo                                                                                                              ;
+; ../IP/IP_PLL_24M/clk_24m_pll_ip.ppf                                                                                                                                                            ;
+; ../IP/IP_PLL_24M/clk_24m_pll_ip.qip                                                                                                                                                            ;
+; ../IP/IP_PLL_24M/clk_24m_pll_ip.v                                                                                                                                                              ;
+; ../IP/IP_PLL_24M/clk_24m_pll_ip_bb.v                                                                                                                                                           ;
+; ../IP/IP_PLL_50M/clk_50m_pll_ip.ppf                                                                                                                                                            ;
+; ../IP/IP_PLL_50M/clk_50m_pll_ip.qip                                                                                                                                                            ;
+; ../IP/IP_PLL_50M/clk_50m_pll_ip.v                                                                                                                                                              ;
+; ../IP/IP_PLL_50M/clk_50m_pll_ip_bb.v                                                                                                                                                           ;
+; ../IP/IP_STEP_MOTOR_RAM/step_motor_table_ram.bsf                                                                                                                                               ;
+; ../IP/IP_STEP_MOTOR_RAM/step_motor_table_ram.inc                                                                                                                                               ;
+; ../IP/IP_STEP_MOTOR_RAM/step_motor_table_ram.qip                                                                                                                                               ;
+; ../IP/IP_STEP_MOTOR_RAM/step_motor_table_ram.v                                                                                                                                                 ;
+; ../IP/IP_STEP_MOTOR_RAM/step_motor_table_ram_bb.v                                                                                                                                              ;
+; ../RTL/fsmc_comm_interface.v                                                                                                                                                                   ;
+; ../RTL/fsmc_write_cmd_process.v                                                                                                                                                                ;
+; ../RTL/gpio_port_in.v                                                                                                                                                                          ;
+; ../RTL/gpio_port_out.v                                                                                                                                                                         ;
+; ../RTL/H1200_StepMotorControl_GHRD.v                                                                                                                                                           ;
+; ../RTL/led_breath.v                                                                                                                                                                            ;
+; ../RTL/led_flashing.v                                                                                                                                                                          ;
+; ../RTL/sensor_debounce.v                                                                                                                                                                       ;
+; ../RTL/step_motor_base_logic.v                                                                                                                                                                 ;
+; ../RTL/step_motor_control.v                                                                                                                                                                    ;
+; ../RTL/step_motor_encoder.v                                                                                                                                                                    ;
+; ../TCL/h1200_step_motor_ctrl.tcl                                                                                                                                                               ;
+; c:/intelfpga_lite/22.1std/quartus/bin64/assignment_defaults.qdf                                                                                                                                ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int.qip                              ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int.sip                              ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int.v                                ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int/dspba_library.vhd                ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int/dspba_library_package.vhd        ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_fp_to_int/motor_encoder_fp_to_int/motor_encoder_fp_to_int_0002.vhd ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp.qip                              ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp.sip                              ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp.v                                ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp/dspba_library.vhd                ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp/dspba_library_package.vhd        ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_int_to_fp/motor_encoder_int_to_fp/motor_encoder_int_to_fp_0002.vhd ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos.qip                                  ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos.sip                                  ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos.v                                    ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos/dspba_library.vhd                    ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos/dspba_library_package.vhd            ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_motor_encoder_mul_pos/motor_encoder_mul_pos/motor_encoder_mul_pos_0002.vhd       ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_PLL_24M/clk_24m_pll_ip.qip                                                       ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_PLL_24M/clk_24m_pll_ip.v                                                         ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_PLL_50M/clk_50m_pll_ip.qip                                                       ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_PLL_50M/clk_50m_pll_ip.v                                                         ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_STEP_MOTOR_RAM/step_motor_table_ram.qip                                          ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/IP/IP_STEP_MOTOR_RAM/step_motor_table_ram.v                                            ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/fsmc_comm_interface.v                                                              ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/fsmc_write_cmd_process.v                                                           ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/gpio_port_in.v                                                                     ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/gpio_port_out.v                                                                    ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/H1200_StepMotorControl_GHRD.v                                                      ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/led_breath.v                                                                       ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/led_flashing.v                                                                     ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/sensor_debounce.v                                                                  ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/step_motor_base_logic.v                                                            ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/step_motor_control.v                                                               ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/RTL/step_motor_encoder.v                                                               ;
+; D:/LH_Local/02-Development/Software/H1200/EmbeddedSoftwareDevelop/V1.0/ActionFPGA_StepMotorEncoder/Code/TCL/h1200_step_motor_ctrl.tcl                                                          ;
+; H1200_StepMotorControl_GHRD.qpf                                                                                                                                                                ;
+; H1200_StepMotorControl_GHRD.qsf                                                                                                                                                                ;
+; H1200_StepMotorControl_GHRD.sdc                                                                                                                                                                ;
+; jic_generic.cof                                                                                                                                                                                ;
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+

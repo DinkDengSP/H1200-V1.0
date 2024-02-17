@@ -1,0 +1,52 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../DriverLocal"
+		},
+		{
+			"path": "../../../../../CommonCode/ADT"
+		},
+		{
+			"path": "../../../../../CommonCode/DriverH743"
+		},
+		{
+			"path": "../../../../../CommonCode/HAL_H7"
+		},
+		{
+			"path": "../../../../../CommonCode/NetXDUO"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolNet"
+		},
+		{
+			"path": "../../../../../CommonCode/RTT"
+		},
+		{
+			"path": "../../../../../CommonCode/ThreadX"
+		},
+		{
+			"path": "../../../../../CommonCode/UtilFiles"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolCan"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"socketnetstate.h": "c",
+			"apptaskheader.h": "c",
+			"modimplutil.h": "c",
+			"srvimplutil.h": "c",
+			"srvimpltimer.h": "c",
+			"srvtaskheader.h": "c",
+			"srvimplbaseutil.h": "c",
+			"srvimplflashiap.h": "c",
+			"appimplutil.h": "c",
+			"srvimplbase.h": "c",
+			"versioncodedev.h": "c"
+		}
+	}
+}

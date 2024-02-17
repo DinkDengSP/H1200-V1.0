@@ -1,0 +1,12 @@
+{
+  "workbench": {
+    "path": "C:\\Program Files\\IAR Systems\\IAR ARM 9.3"
+  },
+  "project": {
+    "path": "${workspaceFolder}\\ProjectFiles\\H360_NetTCBoard18.ewp"
+  },
+  "configs": {
+    "${workspaceFolder}\\ProjectFiles\\TCBoardH360_AppDemo.ewp": "Main",
+    "${workspaceFolder}\\ProjectFiles\\H360_NetTCBoard18.ewp": "Main"
+  }
+}

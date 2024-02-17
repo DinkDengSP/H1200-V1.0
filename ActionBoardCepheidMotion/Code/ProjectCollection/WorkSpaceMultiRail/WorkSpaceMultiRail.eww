@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspace>
+    <project>
+        <path>$WS_DIR$\..\Boot\ProjectFiles\ActionBoardCepheidMotion_Boot.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\MultiRailAction1_App\ProjectFiles\MultiRailAction1CepheidMotion_App.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\MultiRailAction3_App\ProjectFiles\MultiRailAction3CepheidMotion_App.ewp</path>
+    </project>
+    <batchBuild />
+</workspace>

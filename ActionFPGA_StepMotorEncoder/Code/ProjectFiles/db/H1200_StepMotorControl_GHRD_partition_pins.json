@@ -1,0 +1,1389 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "led_breath_1",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_enable[1]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_enable[2]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_enable[3]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_enable[4]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_enable[5]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_enable[6]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_enable[7]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_enable[8]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_enable[9]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_enable[10]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_enable[11]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_enable[12]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_enable[13]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_enable[14]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_enable[15]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_enable[16]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_dir[1]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_dir[2]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_dir[3]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_dir[4]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_dir[5]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_dir[6]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_dir[7]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_dir[8]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_dir[9]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_dir[10]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_dir[11]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_dir[12]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_dir[13]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_dir[14]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_dir[15]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_dir[16]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_pluse[1]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_pluse[2]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_pluse[3]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_pluse[4]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_pluse[5]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_pluse[6]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_pluse[7]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_pluse[8]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_pluse[9]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_pluse[10]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_pluse[11]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_pluse[12]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_pluse[13]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_pluse[14]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_pluse[15]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_out_pluse[16]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[0]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[1]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[2]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[3]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[4]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[5]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[6]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[7]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[8]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[9]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[10]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[11]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[12]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[13]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[14]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[15]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[16]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[17]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[18]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[19]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[20]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[21]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[22]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[23]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[24]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[25]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[26]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[27]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[28]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[29]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[30]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_a[31]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[0]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[1]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[2]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[3]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[4]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[5]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[6]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[7]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[8]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[9]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[10]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[11]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[12]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[13]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[14]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[15]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[16]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[17]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[18]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[19]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[20]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[21]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[22]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[23]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[24]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[25]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[26]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[27]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[28]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[29]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[30]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_b[31]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[0]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[1]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[2]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[3]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[4]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[5]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[6]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[7]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[8]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[9]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[10]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[11]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[12]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[13]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[14]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[15]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[16]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[17]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[18]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[19]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[20]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[21]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[22]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[23]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[24]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[25]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[26]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[27]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[28]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[29]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[30]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_c[31]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[0]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[1]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[2]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[3]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[4]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[5]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[6]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[7]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[8]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[9]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[10]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[11]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[12]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[13]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[14]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[15]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[16]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[17]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[18]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[19]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[20]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[21]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[22]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[23]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[24]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[25]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[26]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[27]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[28]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[29]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[30]",
+					"strict" : false
+				},
+				{
+					"name" : "port_out_group_d[31]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_int_out[0]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_int_out[1]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_int_out[2]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_int_out[3]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_data[0]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_data[1]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_data[2]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_data[3]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_data[4]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_data[5]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_data[6]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_data[7]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_data[8]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_data[9]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_data[10]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_data[11]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_data[12]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_data[13]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_data[14]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_data[15]",
+					"strict" : false
+				},
+				{
+					"name" : "sys_rst_n",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_noe",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_ne",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_addr[9]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_addr[1]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_addr[11]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_addr[15]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_addr[14]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_addr[13]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_addr[7]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_addr[12]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_addr[5]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_addr[4]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_addr[10]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_addr[3]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_addr[6]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_addr[0]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_addr[8]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_addr[2]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_b[0]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_emergency_stop[1]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_reset[1]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_a[1]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[16]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_b[1]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_util_stop[1]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[0]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[17]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[1]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_a[2]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_b[2]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_util_stop[2]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_b[1]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_emergency_stop[2]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_reset[2]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_b[2]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_emergency_stop[3]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_reset[3]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_b[3]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_a[3]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_util_stop[3]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[18]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[2]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_emergency_stop[4]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_reset[4]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_b[3]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_a[4]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_b[4]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[19]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[3]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_util_stop[4]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_emergency_stop[5]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_reset[5]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_b[4]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_a[5]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_b[5]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[20]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_util_stop[5]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[4]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_emergency_stop[6]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_reset[6]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_b[5]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[21]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_a[6]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_b[6]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[5]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_util_stop[6]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_emergency_stop[7]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_reset[7]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_b[6]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[22]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_a[7]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_b[7]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[6]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_util_stop[7]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_b[7]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_emergency_stop[8]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_reset[8]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[23]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_a[8]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_b[8]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[7]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_util_stop[8]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[24]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_a[9]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_b[9]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_b[8]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_emergency_stop[9]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_reset[9]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[8]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_util_stop[9]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_b[9]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_emergency_stop[10]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_reset[10]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[25]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_a[10]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_b[10]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[9]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_util_stop[10]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[26]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_a[11]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_b[11]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_b[10]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_emergency_stop[11]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_reset[11]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[10]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_util_stop[11]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_a[12]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_b[12]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[27]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[11]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_util_stop[12]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_b[11]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_emergency_stop[12]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_reset[12]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[12]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_util_stop[13]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_b[12]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_emergency_stop[13]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_reset[13]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[28]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_a[13]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_b[13]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[29]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_a[14]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_b[14]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_b[13]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_emergency_stop[14]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_reset[14]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[13]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_util_stop[14]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[30]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_a[15]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_b[15]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_b[14]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_emergency_stop[15]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_reset[15]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[14]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_util_stop[15]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_b[15]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_emergency_stop[16]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_reset[16]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[31]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_a[16]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_encoder_b[16]",
+					"strict" : false
+				},
+				{
+					"name" : "port_in_group_d[15]",
+					"strict" : false
+				},
+				{
+					"name" : "motor_sensor_in_util_stop[16]",
+					"strict" : false
+				},
+				{
+					"name" : "fsmc_comm_nwe",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

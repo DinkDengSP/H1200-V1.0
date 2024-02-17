@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspace>
+    <project>
+        <path>$WS_DIR$\AppDemo\ProjectFiles\ActBoardSlaveJQ1_AppDemo.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\Boot\ProjectFiles\ActBoardSlaveJQ1_Boot.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\AppOumengInterface\ProjectFiles\ActBoardSlaveJQ1_OuMengInterface.ewp</path>
+    </project>
+    <batchBuild />
+</workspace>

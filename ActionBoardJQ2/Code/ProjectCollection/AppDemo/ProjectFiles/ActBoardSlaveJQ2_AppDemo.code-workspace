@@ -1,0 +1,53 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../DriverLocal"
+		},
+		{
+			"path": "../../../../../CommonCode/ADT"
+		},
+		{
+			"path": "../../../../../CommonCode/DriverF407"
+		},
+		{
+			"path": "../../../../../CommonCode/HAL_F4"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolCan"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolIPC"
+		},
+		{
+			"path": "../../../../../CommonCode/RTT"
+		},
+		{
+			"path": "../../../../../CommonCode/StepMotorF4"
+		},
+		{
+			"path": "../../../../../CommonCode/ThreadX"
+		},
+		{
+			"path": "../../../../../CommonCode/UtilFiles"
+		},
+		{
+			"path": "../../../CommonSrv"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"mcu_uart1.h": "c",
+			"boardstepmotor.h": "c",
+			"boardportin.h": "c",
+			"mcu_timerbase.h": "c",
+			"mcu_timer9_pwm.h": "c",
+			"driverconfigcan.h": "c",
+			"modimplutil.h": "c",
+			"srvimplsocketcan1.h": "c",
+			"modtaskheader.h": "c"
+		}
+	}
+}

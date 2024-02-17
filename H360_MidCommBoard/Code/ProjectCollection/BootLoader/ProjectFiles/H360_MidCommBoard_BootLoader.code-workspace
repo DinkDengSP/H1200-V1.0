@@ -1,0 +1,53 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../DriverLocal"
+		},
+		{
+			"path": "../../../../../CommonCode/ADT"
+		},
+		{
+			"path": "../../../../../CommonCode/DriverH743"
+		},
+		{
+			"path": "../../../../../CommonCode/FileX"
+		},
+		{
+			"path": "../../../../../CommonCode/HAL_H7"
+		},
+		{
+			"path": "../../../../../CommonCode/NetXDUO"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolNet"
+		},
+		{
+			"path": "../../../../../CommonCode/RTT"
+		},
+		{
+			"path": "../../../../../CommonCode/ThreadX"
+		},
+		{
+			"path": "../../../../../CommonCode/UtilFiles"
+		},
+		{
+			"path": "../SystemUtil"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"ModImplBaseDEMO.C": "cpp",
+			"driverconfigboard.h": "c",
+			"boardrs1.h": "c",
+			"iosfwd": "c",
+			"srvtaskheader.h": "c",
+			"srvimplsyslog.h": "c",
+			"modimplbase.h": "c",
+			"driverconfigcore.h": "c",
+			"nx_user.h": "c"
+		}
+	}
+}

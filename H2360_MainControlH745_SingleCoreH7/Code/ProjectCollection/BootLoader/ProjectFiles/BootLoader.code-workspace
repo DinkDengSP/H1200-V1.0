@@ -1,0 +1,46 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../../../CommonCode/ADT"
+		},
+		{
+			"path": "../../../../../CommonCode/DriverH745_M7"
+		},
+		{
+			"path": "../../../../../CommonCode/HAL_H7"
+		},
+		{
+			"path": "../../../../../CommonCode/NetXDUO"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolNet"
+		},
+		{
+			"path": "../../../../../CommonCode/RTT"
+		},
+		{
+			"path": "../../../../../CommonCode/ThreadX"
+		},
+		{
+			"path": "../../../../../CommonCode/UtilFiles"
+		},
+		{
+			"path": "../../../DriverLocal"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"coreutil.h": "c",
+			"srvimplstartheart.h": "c",
+			"mcu_chipid.h": "c",
+			"netprotdatatype.h": "c",
+			"netprotutil.h": "c",
+			"netprotport.h": "c",
+			"srvtaskheader.h": "c",
+			"srvimplflashiap.h": "c"
+		}
+	}
+}

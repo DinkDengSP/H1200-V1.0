@@ -1,0 +1,11 @@
+{
+  "workbench": {
+    "path": "C:\\Program Files\\IAR Systems\\IAR ARM 9.3"
+  },
+  "project": {
+    "path": "${workspaceFolder}\\ProjectFiles\\BootLoader.ewp"
+  },
+  "configs": {
+    "${workspaceFolder}\\ProjectFiles\\BootLoader.ewp": "Main"
+  }
+}

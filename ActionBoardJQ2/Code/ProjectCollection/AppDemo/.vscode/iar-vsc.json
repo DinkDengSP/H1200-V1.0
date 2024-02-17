@@ -1,0 +1,12 @@
+{
+  "workbench": {
+    "path": "C:\\Program Files\\IAR Systems\\IAR ARM 9.3"
+  },
+  "project": {
+    "path": "${workspaceFolder}\\ProjectFiles\\ActBoardSlaveJQ2_AppDemo.ewp"
+  },
+  "configs": {
+    "${workspaceFolder}\\ProjectFiles\\OumengInterfaceActBoardJQ2_App.ewp": "Main",
+    "${workspaceFolder}\\ProjectFiles\\ActBoardSlaveJQ2_AppDemo.ewp": "Main"
+  }
+}

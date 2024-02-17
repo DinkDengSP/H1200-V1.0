@@ -1,0 +1,58 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../../../CommonCode/ADT"
+		},
+		{
+			"path": "../../../../../CommonCode/DriverH743"
+		},
+		{
+			"path": "../../../../../CommonCode/HAL_H7"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolCan"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolIPC"
+		},
+		{
+			"path": "../../../../../CommonCode/ProtocolUart"
+		},
+		{
+			"path": "../../../../../CommonCode/RTT"
+		},
+		{
+			"path": "../../../../../CommonCode/ThreadX"
+		},
+		{
+			"path": "../../../../../CommonCode/UtilFiles"
+		},
+		{
+			"path": "../../../DriverLocal"
+		},
+		{
+			"path": "../../../CommonSrv"
+		},
+		{
+			"path": "../../../../../CommonCode/StepMotorFPGA"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"srvimplstartheart.h": "c",
+			"systemversion.h": "c",
+			"srvimplbaseutil.h": "c",
+			"srvimplbaseflashiap.h": "c",
+			"srvimplbaseportout.h": "c",
+			"srvimplportoutconfig.h": "c",
+			"srvimplbaseportin.h": "c",
+			"srvimplflashiap.h": "c",
+			"srvimplparam.h": "c",
+			"srvimplportout.h": "c",
+			"ipc_srvstepmotor1.h": "c"
+		}
+	}
+}
